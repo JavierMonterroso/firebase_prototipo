@@ -23,6 +23,8 @@ export const PLACES: Place[] = [
     hours: '8:00 a.m. – 8:00 p.m.',
     description: 'Espacio con ambiente relajante, opciones de comida y acceso a servicios de descanso.',
     imageUrl: images.find(i => i.id === 'restaurant-corozos')?.imageUrl || '',
+    rating: 4.8,
+    reviewCount: 156,
     featured: true
   },
   {
@@ -32,7 +34,9 @@ export const PLACES: Place[] = [
     location: 'Sector de hostales',
     hours: '7:00 a.m. – 9:00 p.m.',
     description: 'Restaurante con opciones de comida para visitantes y huéspedes.',
-    imageUrl: images.find(i => i.id === 'restaurant-palajunoj')?.imageUrl || ''
+    imageUrl: images.find(i => i.id === 'restaurant-palajunoj')?.imageUrl || '',
+    rating: 4.2,
+    reviewCount: 89
   },
   {
     id: 'hostales-san-martin',
@@ -42,6 +46,8 @@ export const PLACES: Place[] = [
     hours: '24 horas',
     description: 'Complejo de hospedaje familiar con acceso a áreas verdes y servicios de descanso.',
     imageUrl: images.find(i => i.id === 'hostal-sanmartin')?.imageUrl || '',
+    rating: 4.9,
+    reviewCount: 320,
     featured: true
   },
   {
@@ -51,7 +57,9 @@ export const PLACES: Place[] = [
     location: 'Zona de bienestar',
     hours: '9:00 a.m. – 6:00 p.m.',
     description: 'Área enfocada en relajación, descanso y servicios de spa.',
-    imageUrl: images.find(i => i.id === 'spa-luna')?.imageUrl || ''
+    imageUrl: images.find(i => i.id === 'spa-luna')?.imageUrl || '',
+    rating: 4.5,
+    reviewCount: 64
   },
   {
     id: 'piscina-familiar',
@@ -61,6 +69,8 @@ export const PLACES: Place[] = [
     hours: '9:00 a.m. – 5:00 p.m.',
     description: 'Piscina pensada para familias, con acceso cercano a zonas de descanso.',
     imageUrl: images.find(i => i.id === 'pool-family')?.imageUrl || '',
+    rating: 4.7,
+    reviewCount: 210,
     featured: true
   },
   {
@@ -70,7 +80,9 @@ export const PLACES: Place[] = [
     location: 'Área central del complejo',
     hours: 'Según programación',
     description: 'Espacio para consultar actividades especiales, temporadas y eventos del parque.',
-    imageUrl: images.find(i => i.id === 'events-center')?.imageUrl || ''
+    imageUrl: images.find(i => i.id === 'events-center')?.imageUrl || '',
+    rating: 4.3,
+    reviewCount: 45
   },
   {
     id: 'planea-tu-visita',
@@ -79,6 +91,8 @@ export const PLACES: Place[] = [
     location: 'Servicio digital',
     hours: 'Disponible todo el tiempo',
     description: 'Sección informativa con recomendaciones, horarios y consejos previos a la visita.',
-    imageUrl: images.find(i => i.id === 'info-center')?.imageUrl || ''
+    imageUrl: images.find(i => i.id === 'info-center')?.imageUrl || '',
+    rating: 4.0,
+    reviewCount: 12
   }
 ];

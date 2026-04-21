@@ -22,5 +22,7 @@ export interface Place {
   hours: string;
   description: string;
   imageUrl: string;
+  rating: number;
+  reviewCount: number;
   featured?: boolean;
 }
