@@ -12,8 +12,10 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
   const router = useRouter();
   
-  // Logic: Featured places based on rating >= 4.7
-  const featuredPlaces = PLACES.filter(p => p.rating >= 4.7).sort((a, b) => b.rating - a.rating);
+  // Logic: Top 5 places ordered by rating (descending)
+  const topRatedPlaces = [...PLACES]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
 
   const handleCategoryClick = (categoryName: string) => {
     router.push(`/search?category=${encodeURIComponent(categoryName)}`);
@@ -41,11 +43,12 @@ export default function Home() {
 
         <div className="flex items-center justify-between mb-5 mt-4">
           <h2 className="text-foreground">Los más valorados</h2>
+          <span className="text-primary text-[13px] font-bold">Top 5</span>
         </div>
 
-        <div className="flex gap-5 overflow-x-auto pb-8 hide-scrollbar -mx-5 px-5">
-          {featuredPlaces.map((place) => (
-            <PlaceCard key={place.id} place={place} />
+        <div className="flex flex-col gap-4 pb-8">
+          {topRatedPlaces.map((place) => (
+            <PlaceCard key={place.id} place={place} horizontal />
           ))}
         </div>
       </div>
