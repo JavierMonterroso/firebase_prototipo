@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   ArrowLeft, 
@@ -188,9 +188,9 @@ export default function WalletPage() {
             </button>
             <h1 className="text-xl font-bold">Mi Monedero</h1>
           </div>
-          <Badge className="bg-green-500/10 text-green-600 border-none px-3 py-1 font-bold text-[10px]">
+          <div className="bg-green-500/10 text-green-600 px-3 py-1 rounded-full font-bold text-[10px]">
             ACTIVO
-          </Badge>
+          </div>
         </div>
 
         {/* Visual Card */}
@@ -219,18 +219,19 @@ export default function WalletPage() {
           <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-black/10 rounded-full blur-2xl" />
         </div>
 
-        {/* Quick Actions */}
+        {/* Quick Actions (Independent Buttons) */}
         <div className="grid grid-cols-2 gap-4 mb-10">
           <Button 
             onClick={() => setShowRecharge(true)}
-            className="h-16 rounded-2xl bg-white border border-primary/10 text-primary font-bold shadow-soft flex flex-col gap-1 items-center justify-center"
+            variant="outline"
+            className="h-16 rounded-2xl border-primary/20 text-primary font-bold shadow-soft flex flex-col gap-1 items-center justify-center hover:bg-primary/5 active:scale-95 transition-all"
           >
             <Plus size={20} />
             <span className="text-[12px]">Recargar</span>
           </Button>
           <Button 
             onClick={() => setShowQR(true)}
-            className="h-16 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 flex flex-col gap-1 items-center justify-center"
+            className="h-16 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 flex flex-col gap-1 items-center justify-center hover:bg-primary/90 active:scale-95 transition-all"
           >
             <QrCode size={20} />
             <span className="text-[12px]">Pagar con QR</span>
@@ -240,7 +241,7 @@ export default function WalletPage() {
         {/* Transaction History */}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-4 px-1">
-            <h2 className="font-bold flex items-center gap-2">
+            <h2 className="font-bold flex items-center gap-2 text-foreground">
               <History size={18} className="text-primary" />
               Actividad reciente
             </h2>
@@ -257,7 +258,7 @@ export default function WalletPage() {
                         <Plus size={18} />
                       </div>
                       <div>
-                        <p className="font-bold text-sm">{tx.type} de Saldo</p>
+                        <p className="font-bold text-sm text-foreground">{tx.type} de Saldo</p>
                         <p className="text-[11px] text-muted-foreground font-medium">{tx.date}</p>
                       </div>
                     </div>
@@ -310,7 +311,7 @@ export default function WalletPage() {
               </div>
             </div>
             
-            <h3 className="text-2xl font-bold mb-1 text-center">{cardData.name}</h3>
+            <h3 className="text-2xl font-bold mb-1 text-center text-foreground">{cardData.name}</h3>
             <div className="flex items-center gap-2 mb-8 bg-muted/40 px-4 py-1.5 rounded-full">
               <span className="text-muted-foreground font-bold text-xs uppercase tracking-widest">Saldo:</span>
               <span className="font-bold text-primary">Q {balance.toFixed(2)}</span>
@@ -321,7 +322,7 @@ export default function WalletPage() {
             </p>
 
             <DialogClose asChild>
-              <Button className="w-full h-14 rounded-2xl bg-foreground text-white font-bold">
+              <Button className="w-full h-14 rounded-2xl bg-foreground text-white font-bold hover:bg-foreground/90 active:scale-95 transition-all">
                 Cerrar
               </Button>
             </DialogClose>
@@ -329,13 +330,5 @@ export default function WalletPage() {
         </Dialog>
       </div>
     </MobileContainer>
-  );
-}
-
-function Badge({ children, className }: { children: React.ReactNode, className?: string }) {
-  return (
-    <span className={cn("px-2 py-1 rounded-md text-[10px]", className)}>
-      {children}
-    </span>
   );
 }
