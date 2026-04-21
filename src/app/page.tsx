@@ -15,12 +15,12 @@ export default function Home() {
       <Hero />
       
       <div className="px-5">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-slate-800">Categorías</h2>
-          <button className="text-primary text-[13px] font-semibold">Ver todas</button>
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-slate-900">Categorías</h2>
+          <button className="text-irtra-blue text-[13px] font-bold px-3 py-1 bg-irtra-blue/5 rounded-full">Ver todas</button>
         </div>
         
-        <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar -mx-5 px-5">
+        <div className="flex gap-5 overflow-x-auto pb-6 hide-scrollbar -mx-5 px-5">
           {CATEGORIES.map((category) => (
             <CategoryChip 
               key={category.id}
@@ -32,19 +32,19 @@ export default function Home() {
 
         <MapPlaceholder />
 
-        <div className="flex items-center justify-between mb-4 mt-6">
-          <h2 className="text-slate-800">Lugares destacados</h2>
-          <button className="text-primary text-[13px] font-semibold">Ver más</button>
+        <div className="flex items-center justify-between mb-5 mt-4">
+          <h2 className="text-slate-900">Destacados</h2>
+          <button className="text-irtra-blue text-[13px] font-bold px-3 py-1 bg-irtra-blue/5 rounded-full">Ver más</button>
         </div>
 
-        <div className="flex gap-5 overflow-x-auto pb-6 hide-scrollbar -mx-5 px-5">
+        <div className="flex gap-5 overflow-x-auto pb-8 hide-scrollbar -mx-5 px-5">
           {featuredPlaces.map((place) => (
             <PlaceCard key={place.id} place={place} />
           ))}
         </div>
         
-        <div className="mt-4">
-          <h2 className="text-slate-800 mb-4">Descubre más</h2>
+        <div className="mt-2">
+          <h2 className="text-slate-900 mb-5">Descubre más</h2>
           <div className="flex flex-col gap-4">
             {PLACES.filter(p => !p.featured).slice(0, 3).map((place) => (
               <PlaceCard key={place.id} place={place} horizontal />

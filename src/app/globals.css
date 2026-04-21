@@ -25,8 +25,8 @@
     --input: 214 32% 91%;
     --ring: 219 100% 56%;
     --radius: 24px;
-    --card-radius: 18px;
-    --button-radius: 18px;
+    --card-radius: 28px;
+    --button-radius: 20px;
   }
 }
 
@@ -35,13 +35,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-irtra-blue/20;
   }
   h1 {
-    @apply font-headline text-[28px] font-bold leading-tight;
+    @apply font-headline text-[28px] font-bold leading-tight tracking-tight;
   }
   h2 {
-    @apply font-headline text-[20px] font-semibold leading-tight;
+    @apply font-headline text-[22px] font-bold leading-tight tracking-tight;
   }
   p, span, div {
     @apply font-body text-[15px];
@@ -49,11 +49,11 @@
 }
 
 .shadow-soft {
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .hero-gradient {
-  background: linear-gradient(180deg, #8ED6F7 0%, #F4FAFD 100%);
+  background: linear-gradient(180deg, #D6EFFF 0%, #F4FAFD 100%);
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -63,3 +63,6 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.bg-irtra-blue { background-color: #1F6BFF; }
+.text-irtra-blue { color: #1F6BFF; }
