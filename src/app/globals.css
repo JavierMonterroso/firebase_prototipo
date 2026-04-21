@@ -5,25 +5,25 @@
 
 @layer base {
   :root {
-    --background: 200 60% 98%; /* #F4FAFD */
-    --foreground: 215 25% 15%; /* #1E293B */
+    --background: 20 100% 97%; /* #FFF5F0 Cream */
+    --foreground: 18 32% 14%; /* #2D1E17 Dark Brown */
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 18 32% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
-    --primary: 219 100% 56%; /* #1F6BFF */
+    --popover-foreground: 18 32% 14%;
+    --primary: 24 100% 63%; /* #FF8C42 Orange */
     --primary-foreground: 0 0% 100%;
-    --secondary: 32 30% 96%; /* #FFF4EC */
-    --secondary-foreground: 215 25% 25%;
-    --muted: 215 15% 90%;
-    --muted-foreground: 215 16% 47%; /* #475569 */
-    --accent: 25 100% 63%; /* #FF8C42 */
+    --secondary: 42 100% 70%; /* #FFD166 Yellow */
+    --secondary-foreground: 18 32% 14%;
+    --muted: 25 20% 92%;
+    --muted-foreground: 18 13% 32%; /* #5C4D46 Soft Brown */
+    --accent: 12 76% 61%; /* #E76F51 Terracotta */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 219 100% 56%;
+    --border: 25 20% 90%;
+    --input: 25 20% 90%;
+    --ring: 24 100% 63%;
     --radius: 24px;
     --card-radius: 28px;
     --button-radius: 20px;
@@ -35,13 +35,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:bg-irtra-blue/20;
+    @apply bg-background text-foreground selection:bg-primary/20;
   }
   h1 {
-    @apply font-headline text-[28px] font-bold leading-tight tracking-tight;
+    @apply font-headline text-[28px] font-bold leading-tight tracking-tight text-foreground;
   }
   h2 {
-    @apply font-headline text-[22px] font-bold leading-tight tracking-tight;
+    @apply font-headline text-[22px] font-bold leading-tight tracking-tight text-foreground;
   }
   p, span, div {
     @apply font-body text-[15px];
@@ -49,11 +49,11 @@
 }
 
 .shadow-soft {
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 10px 30px rgba(125, 60, 31, 0.06);
 }
 
 .hero-gradient {
-  background: linear-gradient(180deg, #D6EFFF 0%, #F4FAFD 100%);
+  background: linear-gradient(180deg, #FFD166 0%, #FFF5F0 100%);
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -63,6 +63,3 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-.bg-irtra-blue { background-color: #1F6BFF; }
-.text-irtra-blue { color: #1F6BFF; }

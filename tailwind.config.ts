@@ -50,11 +50,12 @@ export default {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         irtra: {
-          blue: '#1F6BFF',
           orange: '#FF8C42',
           yellow: '#FFD166',
-          bg: '#F4FAFD',
-          warm: '#FFF4EC',
+          terracotta: '#E76F51',
+          brown: '#7D3C1F',
+          cream: '#FFF5F0',
+          dark: '#2D1E17',
         }
       },
       borderRadius: {
