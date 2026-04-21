@@ -155,54 +155,56 @@ export default function WalletPage() {
     );
   }
 
-  // State B: Activation Form
+  // State B: Activation Form (Centered vertically)
   if (showActivationForm) {
     return (
       <MobileContainer noPadding className="bg-background">
-        <div className="p-6 pt-12">
-          <div className="flex items-center gap-4 mb-8">
+        <div className="p-6 pt-12 flex flex-col h-screen">
+          <div className="flex items-center gap-4 mb-8 shrink-0">
             <button onClick={() => setShowActivationForm(false)} className="bg-white p-2 rounded-xl shadow-sm text-foreground">
               <ArrowLeft size={20} />
             </button>
             <h1 className="text-xl font-bold">Configurar Pago</h1>
           </div>
 
-          <form onSubmit={handleActivate} className="space-y-6">
-            <div className="bg-white rounded-[32px] p-6 shadow-soft border border-muted/50 space-y-4">
-              <div className="space-y-2">
-                <Label className="font-bold ml-1">Número de tarjeta</Label>
-                <div className="relative">
-                  <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground/60" size={18} />
-                  <Input 
-                    placeholder="0000 0000 0000 0000"
-                    className="h-12 pl-12 rounded-xl bg-muted/30 border-none"
-                    required
-                  />
+          <div className="flex-1 flex flex-col justify-center pb-20">
+            <form onSubmit={handleActivate} className="space-y-6">
+              <div className="bg-white rounded-[32px] p-8 shadow-soft border border-muted/50 space-y-6">
+                <div className="space-y-2">
+                  <Label className="font-bold ml-1">Número de tarjeta</Label>
+                  <div className="relative">
+                    <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground/60" size={18} />
+                    <Input 
+                      placeholder="0000 0000 0000 0000"
+                      className="h-14 pl-12 rounded-2xl bg-muted/30 border-none shadow-none focus-visible:ring-1 focus-visible:ring-primary/20"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="font-bold ml-1">Vencimiento</Label>
+                    <Input placeholder="MM/YY" className="h-14 rounded-2xl bg-muted/30 border-none text-center shadow-none focus-visible:ring-1 focus-visible:ring-primary/20" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="font-bold ml-1">CVV</Label>
+                    <Input placeholder="123" type="password" maxLength={3} className="h-14 rounded-2xl bg-muted/30 border-none text-center shadow-none focus-visible:ring-1 focus-visible:ring-primary/20" required />
+                  </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="font-bold ml-1">Vencimiento</Label>
-                  <Input placeholder="MM/YY" className="h-12 rounded-xl bg-muted/30 border-none text-center" required />
-                </div>
-                <div className="space-y-2">
-                  <Label className="font-bold ml-1">CVV</Label>
-                  <Input placeholder="123" type="password" maxLength={3} className="h-12 rounded-xl bg-muted/30 border-none text-center" required />
-                </div>
-              </div>
-            </div>
 
-            <p className="text-[12px] text-muted-foreground text-center px-4 leading-relaxed">
-              * Tus datos están protegidos. Esta configuración es solo para habilitar las recargas digitales en tu monedero.
-            </p>
+              <p className="text-[12px] text-muted-foreground text-center px-4 leading-relaxed">
+                * Tus datos están protegidos. Esta configuración es solo para habilitar las recargas digitales en tu monedero.
+              </p>
 
-            <Button 
-              type="submit"
-              className="w-full h-14 rounded-2xl bg-primary text-white font-bold text-lg shadow-lg shadow-primary/20 mt-4"
-            >
-              Vincular y Activar
-            </Button>
-          </form>
+              <Button 
+                type="submit"
+                className="w-full h-14 rounded-2xl bg-primary text-white font-bold text-lg shadow-lg shadow-primary/20 mt-4"
+              >
+                Vincular y Activar
+              </Button>
+            </form>
+          </div>
         </div>
       </MobileContainer>
     );
@@ -212,7 +214,7 @@ export default function WalletPage() {
   return (
     <MobileContainer noPadding className="bg-background">
       <div className="p-6 pt-12 flex flex-col min-h-screen">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 shrink-0">
           <div className="flex items-center gap-4">
             <button onClick={() => router.back()} className="bg-white p-2 rounded-xl shadow-sm text-foreground active:scale-95 transition-transform">
               <ArrowLeft size={20} />
@@ -225,7 +227,7 @@ export default function WalletPage() {
         </div>
 
         {/* Visual Card */}
-        <div className="bg-gradient-to-br from-primary via-primary to-accent rounded-[32px] p-8 text-white shadow-2xl shadow-primary/30 relative overflow-hidden mb-8 aspect-[1.6/1] flex flex-col justify-between">
+        <div className="bg-gradient-to-br from-primary via-primary to-accent rounded-[32px] p-8 text-white shadow-2xl shadow-primary/30 relative overflow-hidden mb-8 aspect-[1.6/1] flex flex-col justify-between shrink-0">
           <div className="relative z-10 flex justify-between items-start">
             <div>
               <p className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">Saldo Disponible</p>
@@ -251,7 +253,7 @@ export default function WalletPage() {
         </div>
 
         {/* Quick Actions (Independent Buttons) */}
-        <div className="flex gap-4 mb-10">
+        <div className="flex gap-4 mb-10 shrink-0">
           <Button 
             onClick={() => setShowRecharge(true)}
             variant="outline"
