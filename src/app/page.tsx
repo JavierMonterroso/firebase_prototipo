@@ -1,3 +1,59 @@
+
+import { MobileContainer } from '@/components/layout/MobileContainer';
+import { BottomNav } from '@/components/layout/BottomNav';
+import { Hero } from '@/components/home/Hero';
+import { CategoryChip } from '@/components/ui/CategoryChip';
+import { MapPlaceholder } from '@/components/home/MapPlaceholder';
+import { PlaceCard } from '@/components/ui/PlaceCard';
+import { CATEGORIES, PLACES } from '@/lib/data';
+
 export default function Home() {
-  return <></>;
+  const featuredPlaces = PLACES.filter(p => p.featured);
+
+  return (
+    <MobileContainer className="pb-32" noPadding>
+      <Hero />
+      
+      <div className="px-5">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-slate-800">Categorías</h2>
+          <button className="text-primary text-[13px] font-semibold">Ver todas</button>
+        </div>
+        
+        <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar -mx-5 px-5">
+          {CATEGORIES.map((category) => (
+            <CategoryChip 
+              key={category.id}
+              name={category.name}
+              iconName={category.icon}
+            />
+          ))}
+        </div>
+
+        <MapPlaceholder />
+
+        <div className="flex items-center justify-between mb-4 mt-6">
+          <h2 className="text-slate-800">Lugares destacados</h2>
+          <button className="text-primary text-[13px] font-semibold">Ver más</button>
+        </div>
+
+        <div className="flex gap-5 overflow-x-auto pb-6 hide-scrollbar -mx-5 px-5">
+          {featuredPlaces.map((place) => (
+            <PlaceCard key={place.id} place={place} />
+          ))}
+        </div>
+        
+        <div className="mt-4">
+          <h2 className="text-slate-800 mb-4">Descubre más</h2>
+          <div className="flex flex-col gap-4">
+            {PLACES.filter(p => !p.featured).slice(0, 3).map((place) => (
+              <PlaceCard key={place.id} place={place} horizontal />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <BottomNav />
+    </MobileContainer>
+  );
 }

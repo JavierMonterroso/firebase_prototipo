@@ -1,0 +1,59 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-home",
+      "description": "Lush tropical resort garden with palm trees",
+      "imageUrl": "https://picsum.photos/seed/irtra1/800/600",
+      "imageHint": "tropical resort"
+    },
+    {
+      "id": "restaurant-corozos",
+      "description": "Elegant open-air restaurant with tropical views",
+      "imageUrl": "https://picsum.photos/seed/irtra2/600/400",
+      "imageHint": "tropical restaurant"
+    },
+    {
+      "id": "restaurant-palajunoj",
+      "description": "Cozy restaurant with stone walls and warm lighting",
+      "imageUrl": "https://picsum.photos/seed/irtra3/600/400",
+      "imageHint": "warm restaurant"
+    },
+    {
+      "id": "hostal-sanmartin",
+      "description": "Colonial style hotel building with beautiful gardens",
+      "imageUrl": "https://picsum.photos/seed/irtra4/600/400",
+      "imageHint": "colonial hotel"
+    },
+    {
+      "id": "spa-luna",
+      "description": "Peaceful spa room with candles and massage table",
+      "imageUrl": "https://picsum.photos/seed/irtra5/600/400",
+      "imageHint": "spa relaxation"
+    },
+    {
+      "id": "pool-family",
+      "description": "Large swimming pool with slides and clear blue water",
+      "imageUrl": "https://picsum.photos/seed/irtra6/600/400",
+      "imageHint": "swimming pool"
+    },
+    {
+      "id": "events-center",
+      "description": "Large theater or outdoor stage for shows",
+      "imageUrl": "https://picsum.photos/seed/irtra7/600/400",
+      "imageHint": "outdoor events"
+    },
+    {
+      "id": "info-center",
+      "description": "Friendly visitor information center with maps",
+      "imageUrl": "https://picsum.photos/seed/irtra8/600/400",
+      "imageHint": "information center"
+    },
+    {
+      "id": "map-placeholder",
+      "description": "Artistic illustrated map of a theme park",
+      "imageUrl": "https://picsum.photos/seed/irtra-map/800/1000",
+      "imageHint": "illustrated map"
+    }
+  ]
+}
