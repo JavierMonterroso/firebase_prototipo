@@ -1,15 +1,23 @@
 
+"use client"
+
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { Hero } from '@/components/home/Hero';
 import { CategoryChip } from '@/components/ui/CategoryChip';
-import { MapPlaceholder } from '@/components/home/MapPlaceholder';
 import { PlaceCard } from '@/components/ui/PlaceCard';
 import { CATEGORIES, PLACES } from '@/lib/data';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  // Logic: Featured places based on rating >= 4.7 or explicitly marked as featured
+  const router = useRouter();
+  
+  // Logic: Featured places based on rating >= 4.7
   const featuredPlaces = PLACES.filter(p => p.rating >= 4.7).sort((a, b) => b.rating - a.rating);
+
+  const handleCategoryClick = (categoryName: string) => {
+    router.push(`/search?category=${encodeURIComponent(categoryName)}`);
+  };
 
   return (
     <MobileContainer className="pb-32 bg-background" noPadding>
@@ -18,7 +26,6 @@ export default function Home() {
       <div className="px-5">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-foreground">Explora por categorías</h2>
-          <button className="text-primary text-[13px] font-bold px-3 py-1 bg-primary/5 rounded-full">Ver todas</button>
         </div>
         
         <div className="flex gap-5 overflow-x-auto pb-6 hide-scrollbar -mx-5 px-5">
@@ -27,30 +34,19 @@ export default function Home() {
               key={category.id}
               name={category.name}
               iconName={category.icon}
+              onClick={() => handleCategoryClick(category.name)}
             />
           ))}
         </div>
 
-        <MapPlaceholder />
-
         <div className="flex items-center justify-between mb-5 mt-4">
           <h2 className="text-foreground">Los más valorados</h2>
-          {/* Botón "Ver más" eliminado según requerimiento UX */}
         </div>
 
         <div className="flex gap-5 overflow-x-auto pb-8 hide-scrollbar -mx-5 px-5">
           {featuredPlaces.map((place) => (
             <PlaceCard key={place.id} place={place} />
           ))}
-        </div>
-        
-        <div className="mt-2">
-          <h2 className="text-foreground mb-5">Todos los lugares</h2>
-          <div className="flex flex-col gap-4">
-            {PLACES.sort((a, b) => b.reviewCount - a.reviewCount).map((place) => (
-              <PlaceCard key={place.id} place={place} horizontal />
-            ))}
-          </div>
         </div>
       </div>
 

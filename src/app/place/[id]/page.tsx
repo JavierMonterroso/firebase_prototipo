@@ -3,8 +3,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useParams, notFound } from 'next/navigation';
-import { ArrowLeft, MapPin, Clock, Share2, Heart, Navigation, Info, Star, StarHalf } from 'lucide-react';
+import { useParams, useRouter, notFound } from 'next/navigation';
+import { ArrowLeft, MapPin, Clock, Share2, Heart, Navigation, Star } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +14,7 @@ import { toast } from "@/hooks/use-toast";
 
 export default function PlaceDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const id = params?.id as string;
   const place = PLACES.find(p => p.id === id);
 
@@ -40,14 +41,17 @@ export default function PlaceDetailPage() {
           className="w-full h-full object-cover"
         />
         <div className="absolute top-8 left-5 right-5 flex justify-between items-center">
-          <Link href="/" className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-slate-800 shadow-lg active:scale-90 transition-transform">
+          <button 
+            onClick={() => router.back()} 
+            className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-foreground shadow-lg active:scale-90 transition-transform"
+          >
             <ArrowLeft size={22} />
-          </Link>
+          </button>
           <div className="flex gap-3">
-            <button className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-slate-800 shadow-lg active:scale-90 transition-transform">
+            <button className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-foreground shadow-lg active:scale-90 transition-transform">
               <Share2 size={22} />
             </button>
-            <button className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-accent-orange shadow-lg active:scale-90 transition-transform">
+            <button className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-accent shadow-lg active:scale-90 transition-transform">
               <Heart size={22} />
             </button>
           </div>
@@ -56,7 +60,7 @@ export default function PlaceDetailPage() {
       </div>
 
       <div className="px-5 -mt-12 relative z-10">
-        <div className="bg-white rounded-[32px] p-6 shadow-soft border border-slate-50">
+        <div className="bg-white rounded-[32px] p-6 shadow-soft border border-muted/20">
           <div className="flex justify-between items-start mb-4">
             <Badge className="bg-primary/10 text-primary border-none px-4 py-1.5 rounded-full font-bold text-[12px]">
               {place.category}
@@ -145,14 +149,10 @@ export default function PlaceDetailPage() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4">
+        <div className="mt-10 mb-10 flex flex-col gap-4">
           <Button className="h-14 rounded-button bg-primary text-white shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-[16px] font-bold">
             <Navigation size={20} />
             Cómo llegar
-          </Button>
-          <Button variant="outline" className="h-14 rounded-button border-primary/20 text-primary bg-white flex items-center justify-center gap-2 text-[16px] font-bold">
-            <Info size={20} />
-            Más información
           </Button>
         </div>
       </div>
