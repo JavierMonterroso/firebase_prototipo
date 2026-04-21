@@ -14,7 +14,9 @@ import {
   History, 
   ChevronRight,
   X,
-  CheckCircle2
+  CheckCircle2,
+  Scan,
+  Minus
 } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { Button } from '@/components/ui/button';
@@ -29,6 +31,7 @@ interface Transaction {
   type: 'Recarga' | 'Pago';
   amount: number;
   date: string;
+  description: string;
 }
 
 export default function WalletPage() {
@@ -66,13 +69,41 @@ export default function WalletPage() {
       id: Math.random().toString(36).substr(2, 9),
       type: 'Recarga',
       amount: amount,
-      date: 'Hoy'
+      date: 'Hoy',
+      description: 'Recarga de Saldo'
     };
     setHistory(prev => [newTransaction, ...prev]);
     setShowRecharge(false);
     toast({
       title: "Recarga exitosa",
       description: `Se han abonado Q ${amount.toFixed(2)} a tu cuenta.`,
+    });
+  };
+
+  const handlePayment = () => {
+    const paymentAmount = 25; // Simulated fixed amount for the demo
+    if (balance < paymentAmount) {
+      toast({
+        variant: "destructive",
+        title: "Saldo insuficiente",
+        description: "Por favor, recarga tu monedero para continuar.",
+      });
+      return;
+    }
+
+    setBalance(prev => prev - paymentAmount);
+    const newTransaction: Transaction = {
+      id: Math.random().toString(36).substr(2, 9),
+      type: 'Pago',
+      amount: paymentAmount,
+      date: 'Hoy',
+      description: 'Pago en Restaurante'
+    };
+    setHistory(prev => [newTransaction, ...prev]);
+    setShowQR(false);
+    toast({
+      title: "¡Pago realizado!",
+      description: `Se han descontado Q ${paymentAmount.toFixed(2)} de tu saldo.`,
     });
   };
 
@@ -198,7 +229,7 @@ export default function WalletPage() {
           <div className="relative z-10 flex justify-between items-start">
             <div>
               <p className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">Saldo Disponible</p>
-              <p className="text-4xl font-bold tracking-tight">Q {balance.toFixed(2)}</p>
+              <p className="text-4xl font-bold tracking-tight animate-in fade-in slide-in-from-bottom-2 duration-500">Q {balance.toFixed(2)}</p>
             </div>
             <div className="bg-white/20 backdrop-blur-md p-2 rounded-xl">
               <Sparkles size={24} className="text-white" />
@@ -220,49 +251,66 @@ export default function WalletPage() {
         </div>
 
         {/* Quick Actions (Independent Buttons) */}
-        <div className="grid grid-cols-2 gap-4 mb-10">
+        <div className="flex gap-4 mb-10">
           <Button 
             onClick={() => setShowRecharge(true)}
             variant="outline"
-            className="h-16 rounded-2xl border-primary/20 text-primary font-bold shadow-soft flex flex-col gap-1 items-center justify-center hover:bg-primary/5 active:scale-95 transition-all"
+            className="flex-1 h-16 rounded-2xl border-primary/20 text-primary font-bold shadow-soft flex flex-col gap-1 items-center justify-center hover:bg-primary/5 active:scale-95 transition-all"
           >
             <Plus size={20} />
             <span className="text-[12px]">Recargar</span>
           </Button>
-          <Button 
-            onClick={() => setShowQR(true)}
-            className="h-16 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 flex flex-col gap-1 items-center justify-center hover:bg-primary/90 active:scale-95 transition-all"
-          >
-            <QrCode size={20} />
-            <span className="text-[12px]">Pagar con QR</span>
-          </Button>
+          <div className="flex-[2] flex gap-2">
+            <Button 
+              onClick={() => setShowQR(true)}
+              className="flex-1 h-16 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 flex flex-col gap-1 items-center justify-center hover:bg-primary/90 active:scale-95 transition-all"
+            >
+              <QrCode size={20} />
+              <span className="text-[12px]">Pagar con QR</span>
+            </Button>
+            <Button 
+              onClick={() => setShowQR(true)}
+              variant="secondary"
+              className="h-16 w-16 rounded-2xl bg-muted/60 text-foreground shadow-soft flex items-center justify-center hover:bg-muted/80 active:scale-95 transition-all"
+            >
+              <Scan size={24} />
+            </Button>
+          </div>
         </div>
 
-        {/* Transaction History */}
+        {/* Transaction Historial */}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-4 px-1">
             <h2 className="font-bold flex items-center gap-2 text-foreground">
               <History size={18} className="text-primary" />
-              Actividad reciente
+              Historial
             </h2>
             <button className="text-primary text-[11px] font-bold uppercase tracking-wider">Ver todo</button>
           </div>
 
-          <div className="bg-white rounded-[28px] border border-muted/50 overflow-hidden">
+          <div className="bg-white rounded-[28px] border border-muted/50 overflow-hidden mb-6">
             {history.length > 0 ? (
               <div className="divide-y divide-muted/30">
                 {history.map((tx) => (
-                  <div key={tx.id} className="flex items-center justify-between p-4 hover:bg-muted/5 transition-colors">
+                  <div key={tx.id} className="flex items-center justify-between p-4 hover:bg-muted/5 transition-colors animate-in fade-in slide-in-from-top-2">
                     <div className="flex items-center gap-3">
-                      <div className="bg-green-500/10 p-2.5 rounded-xl text-green-600">
-                        <Plus size={18} />
+                      <div className={cn(
+                        "p-2.5 rounded-xl",
+                        tx.type === 'Recarga' ? "bg-green-500/10 text-green-600" : "bg-red-500/10 text-red-600"
+                      )}>
+                        {tx.type === 'Recarga' ? <Plus size={18} /> : <QrCode size={18} />}
                       </div>
                       <div>
-                        <p className="font-bold text-sm text-foreground">{tx.type} de Saldo</p>
+                        <p className="font-bold text-sm text-foreground">{tx.description}</p>
                         <p className="text-[11px] text-muted-foreground font-medium">{tx.date}</p>
                       </div>
                     </div>
-                    <span className="font-bold text-green-600">+Q {tx.amount.toFixed(2)}</span>
+                    <span className={cn(
+                      "font-bold",
+                      tx.type === 'Recarga' ? "text-green-600" : "text-red-600"
+                    )}>
+                      {tx.type === 'Recarga' ? '+' : '-'}Q {tx.amount.toFixed(2)}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -272,7 +320,7 @@ export default function WalletPage() {
                   <History size={32} />
                 </div>
                 <p className="text-muted-foreground font-medium text-sm">Aún no tienes movimientos</p>
-                <p className="text-[11px] text-muted-foreground/60 mt-1">Tus recargas aparecerán aquí</p>
+                <p className="text-[11px] text-muted-foreground/60 mt-1">Tus recargas y pagos aparecerán aquí</p>
               </div>
             )}
           </div>
@@ -299,7 +347,7 @@ export default function WalletPage() {
           </DialogContent>
         </Dialog>
 
-        {/* QR Modal */}
+        {/* QR Payment Modal */}
         <Dialog open={showQR} onOpenChange={setShowQR}>
           <DialogContent className="max-w-[90%] rounded-[32px] p-8 flex flex-col items-center">
             <div className="bg-primary/5 p-6 rounded-[40px] mb-6 relative">
@@ -307,7 +355,7 @@ export default function WalletPage() {
                 <QrCode size={200} className="text-foreground" />
               </div>
               <div className="absolute -top-3 -right-3 bg-primary text-white p-3 rounded-full shadow-lg border-4 border-white">
-                <Sparkles size={20} />
+                <Scan size={20} />
               </div>
             </div>
             
@@ -317,15 +365,23 @@ export default function WalletPage() {
               <span className="font-bold text-primary">Q {balance.toFixed(2)}</span>
             </div>
 
-            <p className="text-center text-sm text-muted-foreground leading-relaxed mb-6 font-medium italic">
+            <div className="w-full space-y-4">
+              <Button 
+                onClick={handlePayment}
+                className="w-full h-14 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all"
+              >
+                Simular Pago (Q 25.00)
+              </Button>
+              <DialogClose asChild>
+                <Button variant="ghost" className="w-full h-12 rounded-2xl text-muted-foreground font-medium">
+                  Cerrar
+                </Button>
+              </DialogClose>
+            </div>
+
+            <p className="text-center text-[11px] text-muted-foreground mt-6 leading-relaxed italic">
               "Presenta este código en cajas para realizar tus pagos de forma rápida y segura."
             </p>
-
-            <DialogClose asChild>
-              <Button className="w-full h-14 rounded-2xl bg-foreground text-white font-bold hover:bg-foreground/90 active:scale-95 transition-all">
-                Cerrar
-              </Button>
-            </DialogClose>
           </DialogContent>
         </Dialog>
       </div>
