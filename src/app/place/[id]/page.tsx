@@ -1,9 +1,9 @@
 
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, useRouter, notFound } from 'next/navigation';
-import { ArrowLeft, MapPin, Clock, Share2, Heart, Navigation, Star, Phone, Sparkles, Map as MapIcon } from 'lucide-react';
+import { ArrowLeft, MapPin, Clock, Share2, Heart, Navigation, Star, Phone, Sparkles, User, ShieldAlert, Timer, Users, Info, Accessibility } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
@@ -31,6 +31,12 @@ export default function PlaceDetailPage() {
       description: `Has calificado ${place.name} con ${userRating} estrellas.`,
     });
   };
+
+  // Logic for wait time estimation
+  const estimatedWaitTime = useMemo(() => {
+    if (!place.peopleInQueue || !place.capacityPerTurn || !place.durationMinutes) return null;
+    return Math.ceil(place.peopleInQueue / place.capacityPerTurn) * place.durationMinutes;
+  }, [place]);
 
   return (
     <MobileContainer className="pb-32" noPadding>
@@ -77,17 +83,71 @@ export default function PlaceDetailPage() {
             </div>
           </div>
           
-          <h1 className="text-[28px] text-foreground leading-tight mb-6">{place.name}</h1>
-          
-          <div className="flex flex-col gap-4">
-            {place.loMejor && (
-              <div className="flex items-start">
-                <div className="bg-accent/10 p-2 rounded-lg text-accent mr-3 shrink-0">
-                  <Sparkles size={18} />
+          <h1 className="text-[28px] text-foreground leading-tight mb-4">{place.name}</h1>
+
+          {/* Wait Time Display for Attractions */}
+          {estimatedWaitTime !== null && (
+            <div className="mb-6 bg-primary/5 rounded-2xl p-4 flex items-center justify-between border border-primary/10">
+              <div className="flex items-center gap-3">
+                <div className="bg-primary text-white p-2.5 rounded-xl">
+                  <Timer size={20} />
                 </div>
                 <div>
-                  <p className="text-muted-foreground text-[12px] font-medium uppercase tracking-wider">Lo mejor</p>
-                  <p className="text-foreground font-semibold">{place.loMejor}</p>
+                  <p className="text-[11px] font-bold text-primary uppercase tracking-wider">Espera estimada</p>
+                  <p className="text-xl font-bold text-foreground">{estimatedWaitTime} min</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] text-muted-foreground font-medium">{place.peopleInQueue} personas en fila</p>
+              </div>
+            </div>
+          )}
+          
+          <div className="flex flex-col gap-4">
+            {/* Specific Info Sections */}
+            {place.intensity && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-start">
+                  <div className="bg-accent/10 p-2 rounded-lg text-accent mr-3 shrink-0">
+                    <ShieldAlert size={18} />
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground text-[11px] font-medium uppercase">Intensidad</p>
+                    <p className="text-foreground font-bold">{place.intensity}</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-primary/10 p-2 rounded-lg text-primary mr-3 shrink-0">
+                    <User size={18} />
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground text-[11px] font-medium uppercase">Público</p>
+                    <p className="text-foreground font-bold">{place.targetAudience}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {place.cuisineType && (
+              <div className="flex items-start">
+                <div className="bg-primary/10 p-2 rounded-lg text-primary mr-3 shrink-0">
+                  <Info size={18} />
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-[11px] font-medium uppercase tracking-wider">Especialidad</p>
+                  <p className="text-foreground font-semibold">{place.cuisineType} • {place.serviceType}</p>
+                </div>
+              </div>
+            )}
+
+            {place.accessibility && (
+              <div className="flex items-start">
+                <div className="bg-primary/10 p-2 rounded-lg text-primary mr-3 shrink-0">
+                  <Accessibility size={18} />
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-[11px] font-medium uppercase tracking-wider">Accesibilidad</p>
+                  <p className="text-foreground font-semibold">{place.accessibility}</p>
                 </div>
               </div>
             )}
@@ -97,7 +157,7 @@ export default function PlaceDetailPage() {
                 <MapPin size={18} />
               </div>
               <div>
-                <p className="text-muted-foreground text-[12px] font-medium uppercase tracking-wider">Ubicación</p>
+                <p className="text-muted-foreground text-[11px] font-medium uppercase tracking-wider">Ubicación</p>
                 <p className="text-foreground font-semibold">{place.location}</p>
               </div>
             </div>
@@ -107,22 +167,10 @@ export default function PlaceDetailPage() {
                 <Clock size={18} />
               </div>
               <div>
-                <p className="text-muted-foreground text-[12px] font-medium uppercase tracking-wider">Horario</p>
+                <p className="text-muted-foreground text-[11px] font-medium uppercase tracking-wider">Horario</p>
                 <p className="text-foreground font-semibold">{place.hours}</p>
               </div>
             </div>
-
-            {place.telefono && (
-              <div className="flex items-start">
-                <div className="bg-primary/10 p-2 rounded-lg text-primary mr-3 shrink-0">
-                  <Phone size={18} />
-                </div>
-                <div>
-                  <p className="text-muted-foreground text-[12px] font-medium uppercase tracking-wider">Teléfono</p>
-                  <p className="text-foreground font-semibold">{place.telefono}</p>
-                </div>
-              </div>
-            )}
           </div>
 
           <div className="mt-8 pt-6 border-t border-muted">
@@ -168,6 +216,32 @@ export default function PlaceDetailPage() {
             </Dialog>
           </div>
         </div>
+
+        {/* Attraction Detailed Stats */}
+        {place.category === 'Atracciones' && place.capacityPerTurn && (
+          <div className="mt-8 bg-white rounded-card p-6 shadow-soft border border-muted/50">
+            <h2 className="text-foreground mb-4 font-bold flex items-center gap-2">
+              <Info size={20} className="text-primary" />
+              Especificaciones
+            </h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Personas por turno</span>
+                <span className="font-bold text-foreground">{place.capacityPerTurn}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Duración aproximada</span>
+                <span className="font-bold text-foreground">{place.durationMinutes} min</span>
+              </div>
+              {place.restrictions && (
+                <div className="pt-2 border-t border-muted">
+                  <p className="text-[11px] text-muted-foreground font-bold uppercase mb-1">Restricciones</p>
+                  <p className="text-sm font-medium text-destructive">{place.restrictions}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="mt-8">
           <h2 className="text-foreground mb-3 font-bold">Acerca de este lugar</h2>

@@ -7,7 +7,8 @@ export type CategoryType =
   | 'Diversión' 
   | 'Eventos' 
   | 'Información'
-  | 'Atracciones';
+  | 'Atracciones'
+  | 'Baños';
 
 export interface Category {
   id: string;
@@ -31,4 +32,17 @@ export interface Place {
   rating: number;
   reviewCount: number;
   featured?: boolean;
+  // Attraction specific
+  intensity?: 'Baja' | 'Media' | 'Alta' | 'Extrema';
+  targetAudience?: string;
+  restrictions?: string;
+  capacityPerTurn?: number;
+  durationMinutes?: number;
+  peopleInQueue?: number;
+  // Restaurant specific
+  cuisineType?: string;
+  serviceType?: string;
+  // Bathroom specific
+  accessibility?: string;
+  availability?: 'Alta' | 'Media' | 'Baja';
 }

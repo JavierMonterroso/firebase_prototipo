@@ -10,6 +10,7 @@ export const CATEGORIES: Category[] = [
   { id: '3', name: 'Hostales', icon: 'Hotel' },
   { id: '4', name: 'Piscinas', icon: 'Waves' },
   { id: '5', name: 'Spa', icon: 'Sparkles' },
+  { id: '7', name: 'Baños', icon: 'Bath' },
   { id: '6', name: 'Información', icon: 'Info' },
 ];
 
@@ -29,7 +30,13 @@ export const PLACES: Place[] = [
     telefono: '7722-9450',
     rating: 4.8,
     reviewCount: 210,
-    featured: true
+    featured: true,
+    intensity: 'Media',
+    targetAudience: 'Todo público',
+    restrictions: 'Estatura mínima 1.10m',
+    capacityPerTurn: 16,
+    durationMinutes: 8,
+    peopleInQueue: 32
   },
   {
     id: 'gondola-salpicona',
@@ -45,7 +52,13 @@ export const PLACES: Place[] = [
     telefono: '7722-9450',
     rating: 4.9,
     reviewCount: 340,
-    featured: true
+    featured: true,
+    intensity: 'Alta',
+    targetAudience: 'Jóvenes y adultos',
+    restrictions: 'Estatura mínima 1.20m',
+    capacityPerTurn: 20,
+    durationMinutes: 5,
+    peopleInQueue: 120
   },
   {
     id: 'jurakan',
@@ -60,100 +73,13 @@ export const PLACES: Place[] = [
     hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
     telefono: '7722-9450',
     rating: 4.7,
-    reviewCount: 180
-  },
-  {
-    id: 'club-de-aviacion',
-    name: 'Club de Aviación',
-    category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Área nueva',
-    loMejor: 'Ideal para niños',
-    description: 'Juegos mecánicos con temática de aviones, aptos para niños y adultos.',
-    imageUrl: 'https://picsum.photos/seed/irtra-aviones/600/400',
-    location: 'Área nueva',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
-    telefono: '7722-9450',
-    rating: 4.5,
-    reviewCount: 120
-  },
-  {
-    id: 'estrugensen',
-    name: 'Estrugensen',
-    category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Plaza Alemana',
-    loMejor: 'Alta adrenalina, gran altura',
-    description: 'Juego que eleva y gira en el aire ofreciendo una experiencia extrema.',
-    imageUrl: 'https://picsum.photos/seed/irtra-estrug/600/400',
-    location: 'Plaza Alemana',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
-    telefono: '7722-9450',
-    rating: 4.8,
-    reviewCount: 260
-  },
-  {
-    id: 'sillas-voladoras',
-    name: 'Sillas Voladoras',
-    category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Área central',
-    loMejor: 'Familiar, vista panorámica',
-    description: 'Juego suave con vista del parque, ideal para toda la familia.',
-    imageUrl: 'https://picsum.photos/seed/irtra-sillas/600/400',
-    location: 'Cerca del carrusel',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
-    telefono: '7722-9450',
-    rating: 4.6,
-    reviewCount: 150
-  },
-
-  // XOCOMIL ATRACCIONES
-  {
-    id: 'vuelta-del-jaguar',
-    name: 'Vuelta del Jaguar',
-    category: 'Atracciones',
-    parque: 'Xocomil',
-    zona: 'Área nueva',
-    loMejor: 'Extremo, caída vertical',
-    description: 'Tobogán con cápsula que se abre y genera caída libre.',
-    imageUrl: 'https://picsum.photos/seed/irtra-jaguar/600/400',
-    location: 'Cerca de Tamagás',
-    hours: 'Jueves a domingo 09:00-17:00',
-    telefono: '7722-9400',
-    rating: 4.9,
-    reviewCount: 390,
-    featured: true
-  },
-  {
-    id: 'el-caracol',
-    name: 'El Caracol',
-    category: 'Atracciones',
-    parque: 'Xocomil',
-    zona: 'Área nueva',
-    loMejor: 'Giro circular, adrenalina',
-    description: 'Tobogán que gira en espiral antes de caer en piscina.',
-    imageUrl: 'https://picsum.photos/seed/irtra-caracol/600/400',
-    location: 'Área nueva',
-    hours: 'Jueves a domingo 09:00-17:00',
-    telefono: '7722-9400',
-    rating: 4.7,
-    reviewCount: 200
-  },
-  {
-    id: 'el-regreson',
-    name: 'El Regresón',
-    category: 'Atracciones',
-    parque: 'Xocomil',
-    zona: 'Área nueva',
-    loMejor: 'Alta velocidad, efecto rebote',
-    description: 'Tobogán que impulsa hacia arriba y regresa con velocidad.',
-    imageUrl: 'https://picsum.photos/seed/irtra-regreson/600/400',
-    location: 'Área nueva',
-    hours: 'Jueves a domingo 09:00-17:00',
-    telefono: '7722-9400',
-    rating: 4.8,
-    reviewCount: 230
+    reviewCount: 180,
+    intensity: 'Extrema',
+    targetAudience: 'Buscadores de adrenalina',
+    restrictions: 'Estatura mínima 1.40m',
+    capacityPerTurn: 40,
+    durationMinutes: 3,
+    peopleInQueue: 150
   },
   {
     id: 'tamagas',
@@ -169,40 +95,16 @@ export const PLACES: Place[] = [
     telefono: '7722-9400',
     rating: 4.9,
     reviewCount: 410,
-    featured: true
-  },
-  {
-    id: 'rapidos-de-xocomil',
-    name: 'Rápidos de Xocomil',
-    category: 'Atracciones',
-    parque: 'Xocomil',
-    zona: 'Área nueva',
-    loMejor: 'Tobogán alto, adrenalina',
-    description: 'Uno de los toboganes más altos de Centroamérica.',
-    imageUrl: 'https://picsum.photos/seed/irtra-rapidos/600/400',
-    location: 'Área nueva',
-    hours: 'Jueves a domingo 09:00-17:00',
-    telefono: '7722-9400',
-    rating: 4.8,
-    reviewCount: 300
-  },
-  {
-    id: 'nido-de-serpientes',
-    name: 'Nido de Serpientes',
-    category: 'Atracciones',
-    parque: 'Xocomil',
-    zona: 'Área central',
-    loMejor: '7 toboganes, variedad',
-    description: 'Toboganes abiertos y cerrados con diferentes velocidades.',
-    imageUrl: 'https://picsum.photos/seed/irtra-nido/600/400',
-    location: 'Xocomil',
-    hours: 'Jueves a domingo 09:00-17:00',
-    telefono: '7722-9400',
-    rating: 4.7,
-    reviewCount: 250
+    featured: true,
+    intensity: 'Alta',
+    targetAudience: 'Familiar',
+    restrictions: 'Estatura mínima 1.20m',
+    capacityPerTurn: 2,
+    durationMinutes: 4,
+    peopleInQueue: 18
   },
 
-  // OTROS (ADAPTADOS)
+  // RESTAURANTES
   {
     id: 'los-corozos',
     name: 'Los Corozos',
@@ -215,19 +117,40 @@ export const PLACES: Place[] = [
     hours: '8:00 a.m. – 8:00 p.m.',
     telefono: '7722-9450',
     rating: 4.8,
-    reviewCount: 156
+    reviewCount: 156,
+    cuisineType: 'Internacional / Buffet',
+    serviceType: 'Mesa / Buffet'
+  },
+  
+  // BAÑOS
+  {
+    id: 'banos-plaza-italia',
+    name: 'Servicios Plaza Italia',
+    category: 'Baños',
+    parque: 'Xetulul',
+    zona: 'Plaza Italia',
+    description: 'Baños públicos con altos estándares de limpieza y mantenimiento.',
+    imageUrl: 'https://picsum.photos/seed/irtra-restroom1/600/400',
+    location: 'A un costado de Góndola Salpicona',
+    hours: '10:00 a.m. – 6:00 p.m.',
+    rating: 4.5,
+    reviewCount: 45,
+    accessibility: 'Totalmente accesible',
+    availability: 'Alta'
   },
   {
-    id: 'hostales-san-martin',
-    name: 'Hostales San Martín',
-    category: 'Hostales',
-    parque: 'Hostales',
-    description: 'Complejo de hospedaje familiar con acceso a áreas verdes y servicios de descanso.',
-    imageUrl: images.find(i => i.id === 'hostal-sanmartin')?.imageUrl || '',
-    location: 'Área de hostales, complejo IRTRA',
-    hours: '24 horas',
-    telefono: '7722-9450',
-    rating: 4.9,
-    reviewCount: 320
+    id: 'banos-xocomil-entrada',
+    name: 'Servicios Entrada Principal',
+    category: 'Baños',
+    parque: 'Xocomil',
+    zona: 'Entrada',
+    description: 'Servicios sanitarios amplios cerca de la entrada principal y vestidores.',
+    imageUrl: 'https://picsum.photos/seed/irtra-restroom2/600/400',
+    location: 'Frente a los lockers principales',
+    hours: '9:00 a.m. – 5:00 p.m.',
+    rating: 4.2,
+    reviewCount: 30,
+    accessibility: 'Rampas disponibles',
+    availability: 'Media'
   }
 ];

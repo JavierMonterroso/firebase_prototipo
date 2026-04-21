@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { LogOut, Settings, CreditCard, Bell, Shield, HelpCircle, ChevronRight } from 'lucide-react';
+import { LogOut, Settings, CreditCard, Bell, Shield, HelpCircle, ChevronRight, Sparkles, History, Wallet } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { Button } from '@/components/ui/button';
@@ -17,11 +17,11 @@ export default function ProfilePage() {
   };
 
   const menuItems = [
+    { icon: Wallet, label: 'Monedero Sin Contacto', color: 'text-primary', badge: 'PRÓXIMAMENTE', href: '/wallet' },
+    { icon: History, label: 'Mis Recuerdos', color: 'text-accent', badge: 'NUEVO', href: '/memories' },
+    { icon: HelpCircle, label: 'Centro de Ayuda / Chat', color: 'text-blue-500', href: '/help' },
     { icon: Settings, label: 'Ajustes de cuenta', color: 'text-slate-600' },
-    { icon: CreditCard, label: 'Métodos de pago', color: 'text-slate-600' },
     { icon: Bell, label: 'Notificaciones', color: 'text-slate-600' },
-    { icon: Shield, label: 'Privacidad y Seguridad', color: 'text-slate-600' },
-    { icon: HelpCircle, label: 'Centro de ayuda', color: 'text-slate-600' },
   ];
 
   return (
@@ -36,21 +36,32 @@ export default function ProfilePage() {
           <div>
             <h2 className="text-xl font-bold text-slate-900">Juan Pérez</h2>
             <p className="text-slate-500 font-medium">juan.perez@email.com</p>
-            <div className="mt-1 bg-irtra-blue/10 text-irtra-blue text-[11px] font-bold px-2 py-0.5 rounded-full inline-block">
+            <div className="mt-1 bg-primary/10 text-primary text-[11px] font-bold px-3 py-1 rounded-full inline-block">
               EXPLORADOR NIVEL 5
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-[24px] shadow-soft border border-slate-50 overflow-hidden mb-6">
+        {/* Modules Section */}
+        <div className="bg-white rounded-[24px] shadow-soft border border-slate-50 overflow-hidden mb-8">
           {menuItems.map((item, index) => (
             <React.Fragment key={item.label}>
-              <button className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors active:bg-slate-100">
+              <button 
+                onClick={() => item.href && router.push(item.href)}
+                className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors active:bg-slate-100"
+              >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2 rounded-xl bg-irtra-bg ${item.color}`}>
-                    <item.icon size={20} />
+                  <div className={cn("p-2.5 rounded-xl bg-muted/40", item.color)}>
+                    <item.icon size={22} />
                   </div>
-                  <span className="text-slate-700 font-semibold text-[15px]">{item.label}</span>
+                  <div className="flex flex-col items-start">
+                    <span className="text-slate-700 font-bold text-[15px]">{item.label}</span>
+                    {item.badge && (
+                      <span className="text-[9px] font-black text-white bg-primary px-1.5 rounded mt-0.5 tracking-tighter">
+                        {item.badge}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <ChevronRight size={18} className="text-slate-300" />
               </button>
@@ -72,4 +83,9 @@ export default function ProfilePage() {
       <BottomNav />
     </MobileContainer>
   );
+}
+
+// Helper to use cn in this file if needed
+function cn(...inputs: any[]) {
+  return inputs.filter(Boolean).join(' ');
 }
