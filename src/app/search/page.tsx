@@ -28,8 +28,13 @@ export default function SearchPage() {
 
   const filteredPlaces = useMemo(() => {
     return PLACES.filter(place => {
-      const matchesSearch = place.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          place.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const searchLower = searchTerm.toLowerCase();
+      const matchesSearch = 
+        place.name.toLowerCase().includes(searchLower) ||
+        place.description.toLowerCase().includes(searchLower) ||
+        place.parque.toLowerCase().includes(searchLower) ||
+        (place.zona && place.zona.toLowerCase().includes(searchLower));
+        
       const matchesCategory = activeCategory === 'All' || place.category === activeCategory;
       return matchesSearch && matchesCategory;
     });
@@ -51,7 +56,7 @@ export default function SearchPage() {
             <Input 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Ej. Los Corozos, Piscina..."
+              placeholder="Ej. Xetulul, Tamagás, Restaurante..."
               className="pl-10 h-12 rounded-[18px] bg-muted/40 border-none shadow-none focus-visible:ring-1 focus-visible:ring-primary/20"
             />
           </div>
@@ -98,7 +103,7 @@ export default function SearchPage() {
                 <SearchIcon size={40} />
               </div>
               <h3 className="font-headline font-semibold text-foreground">No se encontraron resultados</h3>
-              <p className="text-muted-foreground mt-2 px-10">Intenta buscar con otros términos o cambia la categoría.</p>
+              <p className="text-muted-foreground mt-2 px-10">Intenta buscar por parque (Xetulul/Xocomil) o por el nombre de la atracción.</p>
             </div>
           )}
         </div>

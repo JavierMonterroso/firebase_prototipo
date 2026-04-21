@@ -2,15 +2,15 @@
 "use client"
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useParams, useRouter, notFound } from 'next/navigation';
-import { ArrowLeft, MapPin, Clock, Share2, Heart, Navigation, Star } from 'lucide-react';
+import { ArrowLeft, MapPin, Clock, Share2, Heart, Navigation, Star, Phone, Sparkles, Map as MapIcon } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
+import { cn } from '@/lib/utils';
 
 export default function PlaceDetailPage() {
   const params = useParams();
@@ -40,7 +40,7 @@ export default function PlaceDetailPage() {
           alt={place.name} 
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-8 left-5 right-5 flex justify-between items-center">
+        <div className="absolute top-8 left-5 right-5 flex justify-between items-center z-20">
           <button 
             onClick={() => router.back()} 
             className="bg-white/80 backdrop-blur-md p-2.5 rounded-2xl text-foreground shadow-lg active:scale-90 transition-transform"
@@ -62,9 +62,12 @@ export default function PlaceDetailPage() {
       <div className="px-5 -mt-12 relative z-10">
         <div className="bg-white rounded-[32px] p-6 shadow-soft border border-muted/20">
           <div className="flex justify-between items-start mb-4">
-            <Badge className="bg-primary/10 text-primary border-none px-4 py-1.5 rounded-full font-bold text-[12px]">
-              {place.category}
-            </Badge>
+            <div className="flex flex-col gap-1">
+              <Badge className="bg-primary/10 text-primary border-none px-4 py-1.5 rounded-full font-bold text-[12px] w-fit">
+                {place.category}
+              </Badge>
+              <span className="text-[12px] font-bold text-accent uppercase tracking-wider ml-1">{place.parque} {place.zona ? `• ${place.zona}` : ''}</span>
+            </div>
             <div className="flex flex-col items-end">
               <div className="flex items-center gap-1">
                 <Star size={18} className="fill-primary text-primary" />
@@ -77,6 +80,18 @@ export default function PlaceDetailPage() {
           <h1 className="text-[28px] text-foreground leading-tight mb-6">{place.name}</h1>
           
           <div className="flex flex-col gap-4">
+            {place.loMejor && (
+              <div className="flex items-start">
+                <div className="bg-accent/10 p-2 rounded-lg text-accent mr-3 shrink-0">
+                  <Sparkles size={18} />
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-[12px] font-medium uppercase tracking-wider">Lo mejor</p>
+                  <p className="text-foreground font-semibold">{place.loMejor}</p>
+                </div>
+              </div>
+            )}
+
             <div className="flex items-start">
               <div className="bg-primary/10 p-2 rounded-lg text-primary mr-3 shrink-0">
                 <MapPin size={18} />
@@ -96,6 +111,18 @@ export default function PlaceDetailPage() {
                 <p className="text-foreground font-semibold">{place.hours}</p>
               </div>
             </div>
+
+            {place.telefono && (
+              <div className="flex items-start">
+                <div className="bg-primary/10 p-2 rounded-lg text-primary mr-3 shrink-0">
+                  <Phone size={18} />
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-[12px] font-medium uppercase tracking-wider">Teléfono</p>
+                  <p className="text-foreground font-semibold">{place.telefono}</p>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-8 pt-6 border-t border-muted">
@@ -158,9 +185,4 @@ export default function PlaceDetailPage() {
       </div>
     </MobileContainer>
   );
-}
-
-// Helper para concatenar clases
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
 }

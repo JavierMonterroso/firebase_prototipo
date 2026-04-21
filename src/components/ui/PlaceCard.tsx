@@ -24,7 +24,7 @@ export const PlaceCard = ({ place, horizontal = false }: PlaceCardProps) => {
           </div>
           <div className="flex flex-col justify-center flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-accent text-[11px] font-bold uppercase tracking-widest">{place.category}</span>
+              <span className="text-accent text-[11px] font-bold uppercase tracking-widest">{place.parque} {place.zona ? `• ${place.zona}` : ''}</span>
               <div className="flex items-center gap-1 bg-primary/5 px-1.5 py-0.5 rounded-lg">
                 <Star size={10} className="fill-primary text-primary" />
                 <span className="text-[11px] font-bold text-primary">{place.rating}</span>
@@ -66,9 +66,12 @@ export const PlaceCard = ({ place, horizontal = false }: PlaceCardProps) => {
         </div>
         <div className="p-4">
           <h3 className="font-headline font-bold text-foreground text-[17px] truncate leading-tight mb-2">{place.name}</h3>
-          <div className="flex items-center text-muted-foreground text-[12px] font-medium">
-            <MapPin size={13} className="mr-1.5 text-primary/60 shrink-0" />
-            <span className="truncate">{place.location}</span>
+          <div className="flex flex-col gap-1">
+            <span className="text-[10px] text-accent font-bold uppercase">{place.parque}</span>
+            <div className="flex items-center text-muted-foreground text-[12px] font-medium">
+              <MapPin size={13} className="mr-1.5 text-primary/60 shrink-0" />
+              <span className="truncate">{place.location}</span>
+            </div>
           </div>
         </div>
       </div>

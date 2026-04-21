@@ -6,7 +6,8 @@ export type CategoryType =
   | 'Spa' 
   | 'Diversión' 
   | 'Eventos' 
-  | 'Información';
+  | 'Información'
+  | 'Atracciones';
 
 export interface Category {
   id: string;
@@ -18,9 +19,14 @@ export interface Place {
   id: string;
   name: string;
   category: CategoryType;
-  location: string;
-  hours: string;
+  parque: string;
+  zona?: string;
+  loMejor?: string;
   description: string;
+  telefono?: string;
+  precios?: string;
+  hours: string;
+  location: string;
   imageUrl: string;
   rating: number;
   reviewCount: number;
