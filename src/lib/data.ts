@@ -115,8 +115,9 @@ export const PLACES: Place[] = [
       intensidad: "Alta",
       publico: "General",
       duracion: "3 minutos",
-      capacidad: 14,
-      tiempo_estimado: "10-25 min"
+      capacidad_por_turno: 14,
+      tiempo_estimado: "15-25 min",
+      personas_en_fila: 42
     },
     horario: "10:00 - 18:00",
     ubicacion: "Xetulul - Plaza Italia",
@@ -134,8 +135,9 @@ export const PLACES: Place[] = [
       intensidad: "Alta",
       publico: "Adultos",
       duracion: "2 minutos",
-      capacidad: 20,
-      tiempo_estimado: "15-30 min"
+      capacidad_por_turno: 20,
+      tiempo_estimado: "20-35 min",
+      personas_en_fila: 85
     },
     horario: "10:00 - 18:00",
     ubicacion: "Xetulul",
@@ -147,30 +149,23 @@ export const PLACES: Place[] = [
     nombre: "Estrugensen",
     tipo: "atraccion",
     categoria: "extrema",
-    descripcion: "Juego mecánico de gran altura ubicado en la Plaza Alemana que eleva y gira a gran velocidad, ofreciendo una experiencia llena de adrenalina y vistas impresionantes del parque.",
+    descripcion: "Juego mecánico de gran altura ubicado en la Plaza Alemana que eleva y gira a gran velocidad.",
     imageUrl: '/img/estrugensen.jpg',
     detalles: {
       intensidad: "Alta",
       publico: "Adultos",
-      duracion: "2-3 minutos",
-      capacidad: 20,
-      tiempo_estimado: "15-30 min",
+      duracion: "3 minutos",
+      capacidad_por_turno: 20,
+      tiempo_estimado: "10-20 min",
+      personas_en_fila: 15,
       restricciones: "Requiere altura mínima"
     },
-    lo_mejor: [
-      "Juego lleno de emoción",
-      "Ubicado en Plaza Alemana",
-      "De los más famosos"
-    ],
-    telefono: "7722-9450",
+    lo_mejor: ["Juego lleno de emoción", "Ubicado en Plaza Alemana"],
     precios: {
       afiliados: "Gratis con 5 personas del núcleo familiar",
-      no_afiliado: {
-        ninos_adulto_mayor: "Q50.00",
-        adulto: "Q100.00"
-      }
+      no_afiliado: { ninos_adulto_mayor: "Q50.00", adulto: "Q100.00" }
     },
-    horario: "Jueves 10:00 - 17:00 | Viernes a domingo 10:00 - 18:00",
+    horario: "Viernes a domingo 10:00 - 18:00",
     ubicacion: "Xetulul, Plaza Alemana",
     rating: 4.7,
     reviews: 230
@@ -180,31 +175,24 @@ export const PLACES: Place[] = [
     nombre: "La Avalancha",
     tipo: "atraccion",
     categoria: "extrema",
-    descripcion: "Montaña rusa temática del Polo Norte con múltiples inversiones, alta velocidad y recorridos llenos de adrenalina, considerada una de las más impactantes de Guatemala.",
+    descripcion: "Montaña rusa temática del Polo Norte con múltiples inversiones.",
     imageUrl: '/img/avalancha.jpg',
     detalles: {
       intensidad: "Muy alta",
       publico: "Adultos",
-      duracion: "3-4 minutos",
-      capacidad: 24,
-      tiempo_estimado: "20-40 min",
+      duracion: "4 minutos",
+      capacidad_por_turno: 24,
+      tiempo_estimado: "45-60 min",
+      personas_en_fila: 184,
       velocidad_aproximada: "88 km/h",
       inversiones: 8
     },
-    lo_mejor: [
-      "Una de las montañas más altas",
-      "8 inversiones",
-      "Temática del Polo Norte"
-    ],
-    telefono: "7722-9450",
+    lo_mejor: ["8 inversiones", "Temática del Polo Norte"],
     precios: {
       afiliados: "Gratis con 5 personas del núcleo familiar",
-      no_afiliado: {
-        ninos_adulto_mayor: "Q50.00",
-        adulto: "Q100.00"
-      }
+      no_afiliado: { ninos_adulto_mayor: "Q50.00", adulto: "Q100.00" }
     },
-    horario: "Jueves 10:00 - 17:00 | Viernes a domingo 10:00 - 18:00",
+    horario: "Viernes a domingo 10:00 - 18:00",
     ubicacion: "Xetulul, frente a la Plaza Alemana",
     rating: 4.9,
     reviews: 410
@@ -219,8 +207,9 @@ export const PLACES: Place[] = [
     detalles: {
       intensidad: "Alta",
       publico: "Adultos",
-      duracion: "1-2 minutos",
-      capacidad: 1,
+      duracion: "2 minutos",
+      capacidad_por_turno: 1,
+      personas_en_fila: 12,
       tipo: "Tobogán extremo"
     },
     horario: "Jueves a domingo 9:00 - 17:00",
@@ -238,7 +227,8 @@ export const PLACES: Place[] = [
     detalles: {
       intensidad: "Media-Alta",
       publico: "General",
-      capacidad: 2,
+      capacidad_por_turno: 2,
+      personas_en_fila: 28,
       duracion: "2 minutos"
     },
     horario: "Jueves a domingo 9:00 - 17:00",

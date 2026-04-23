@@ -38,7 +38,7 @@ export interface Place {
     edificios?: string[];
     extra?: string;
     estructura?: string;
-    // Atracciones
+    // Atracciones / Piscinas
     intensidad?: string;
     publico?: string;
     duracion?: string;
@@ -47,6 +47,8 @@ export interface Place {
     velocidad_aproximada?: string;
     inversiones?: number;
     tipo?: string;
+    capacidad_por_turno?: number;
+    personas_en_fila?: number; // Nueva propiedad para molinetes
   };
 }
 

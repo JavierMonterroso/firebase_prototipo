@@ -25,12 +25,14 @@ import {
   Waves,
   Gauge,
   RotateCw,
-  History
+  History,
+  Activity
 } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export default function PlaceDetailPage() {
   const params = useParams();
@@ -43,6 +45,13 @@ export default function PlaceDetailPage() {
   }
 
   const categoryName = place.categoria || place.tipo.charAt(0).toUpperCase() + place.tipo.slice(1);
+
+  // Lógica para determinar el estado de la fila basado en molinetes
+  const getQueueStatus = (count: number) => {
+    if (count < 20) return { label: 'Fluida', color: 'text-green-600', bg: 'bg-green-50' };
+    if (count < 60) return { label: 'Moderada', color: 'text-amber-600', bg: 'bg-amber-50' };
+    return { label: 'Saturada', color: 'text-red-600', bg: 'bg-red-50' };
+  };
 
   return (
     <MobileContainer className="pb-32" noPadding>
@@ -79,7 +88,30 @@ export default function PlaceDetailPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            {/* Horario General */}
+            {/* Monitor de Fila (NUEVA PARTE MEJORADA) */}
+            {(place.tipo === 'atraccion' || place.tipo === 'piscina') && place.detalles.personas_en_fila !== undefined && (
+              <div className={cn(
+                "p-4 rounded-2xl border flex items-center justify-between mb-2",
+                getQueueStatus(place.detalles.personas_en_fila).bg,
+                "border-black/5"
+              )}>
+                <div className="flex items-center gap-3">
+                  <div className={cn("p-2 rounded-xl bg-white", getQueueStatus(place.detalles.personas_en_fila).color)}>
+                    <Activity size={20} className="animate-pulse" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">Fila en Vivo (Molinetes)</p>
+                    <p className="text-lg font-bold leading-tight">
+                      {place.detalles.personas_en_fila} <span className="text-xs font-medium text-muted-foreground">personas</span>
+                    </p>
+                  </div>
+                </div>
+                <Badge className={cn("rounded-lg font-bold border-none", getQueueStatus(place.detalles.personas_en_fila).bg, getQueueStatus(place.detalles.personas_en_fila).color)}>
+                  {getQueueStatus(place.detalles.personas_en_fila).label}
+                </Badge>
+              </div>
+            )}
+
             <div className="flex items-center gap-3">
               <div className="bg-muted p-2 rounded-lg text-primary"><Clock size={18} /></div>
               <div>
@@ -90,7 +122,6 @@ export default function PlaceDetailPage() {
               </div>
             </div>
 
-            {/* Detalles de Atracciones / Piscinas */}
             {(place.tipo === 'atraccion' || place.tipo === 'piscina') && (
               <div className="grid grid-cols-2 gap-x-4 gap-y-6">
                 <div className="flex items-center gap-3">
@@ -104,17 +135,8 @@ export default function PlaceDetailPage() {
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-50 p-2 rounded-lg text-blue-600"><Timer size={18} /></div>
                     <div>
-                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Espera</p>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Espera Est.</p>
                       <p className="text-sm font-semibold">{place.detalles.tiempo_estimado}</p>
-                    </div>
-                  </div>
-                )}
-                {place.detalles.publico && (
-                  <div className="flex items-center gap-3">
-                    <div className="bg-purple-50 p-2 rounded-lg text-purple-600"><Users size={18} /></div>
-                    <div>
-                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Público</p>
-                      <p className="text-sm font-semibold">{place.detalles.publico}</p>
                     </div>
                   </div>
                 )}
@@ -127,12 +149,12 @@ export default function PlaceDetailPage() {
                     </div>
                   </div>
                 )}
-                {place.detalles.capacidad && (
+                {place.detalles.capacidad_por_turno && (
                   <div className="flex items-center gap-3">
                     <div className="bg-indigo-50 p-2 rounded-lg text-indigo-600"><Users size={18} /></div>
                     <div>
-                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Capacidad</p>
-                      <p className="text-sm font-semibold">{place.detalles.capacidad} pers.</p>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Por Turno</p>
+                      <p className="text-sm font-semibold">{place.detalles.capacidad_por_turno} pers.</p>
                     </div>
                   </div>
                 )}
@@ -151,15 +173,6 @@ export default function PlaceDetailPage() {
                     <div>
                       <p className="text-[10px] text-muted-foreground font-bold uppercase">Inversiones</p>
                       <p className="text-sm font-semibold">{place.detalles.inversiones}</p>
-                    </div>
-                  </div>
-                )}
-                {place.tipo === 'piscina' && !place.detalles.publico && (
-                  <div className="flex items-center gap-3">
-                    <div className="bg-cyan-50 p-2 rounded-lg text-cyan-600"><Waves size={18} /></div>
-                    <div>
-                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Tipo</p>
-                      <p className="text-sm font-semibold">Acuático</p>
                     </div>
                   </div>
                 )}
