@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { LogOut, Settings, Bell, HelpCircle, ChevronRight, Wallet, History } from 'lucide-react';
+import { LogOut, Settings, Bell, HelpCircle, ChevronRight, Wallet, Key } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,13 @@ export default function ProfilePage() {
   };
 
   const menuItems = [
+    { 
+      icon: Key, 
+      label: 'Mi Llave Digital', 
+      color: 'text-primary', 
+      badge: 'NUEVO', 
+      href: '/digital-key' 
+    },
     { 
       icon: Wallet, 
       label: 'Monedero Sin Contacto', 
