@@ -26,7 +26,10 @@ import {
   Gauge,
   RotateCw,
   History,
-  Activity
+  Activity,
+  Baby,
+  Accessibility,
+  UserCheck
 } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
@@ -88,7 +91,7 @@ export default function PlaceDetailPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            {/* Monitor de Fila (NUEVA PARTE MEJORADA) */}
+            {/* Monitor de Fila (Molinetes) */}
             {(place.tipo === 'atraccion' || place.tipo === 'piscina') && place.detalles.personas_en_fila !== undefined && (
               <div className={cn(
                 "p-4 rounded-2xl border flex items-center justify-between mb-2",
@@ -121,6 +124,48 @@ export default function PlaceDetailPage() {
                 </p>
               </div>
             </div>
+
+            {/* Detalles específicos para Baños */}
+            {place.categoria === 'baños' && (
+              <div className="grid grid-cols-2 gap-4 mt-2">
+                {place.detalles.hombres && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-blue-50 p-2 rounded-lg text-blue-600"><Users size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Hombres</p>
+                      <p className="text-sm font-semibold">Disponible</p>
+                    </div>
+                  </div>
+                )}
+                {place.detalles.mujeres && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-pink-50 p-2 rounded-lg text-pink-600"><Users size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Mujeres</p>
+                      <p className="text-sm font-semibold">Disponible</p>
+                    </div>
+                  </div>
+                )}
+                {place.detalles.cambiador_bebe && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-indigo-50 p-2 rounded-lg text-indigo-600"><Baby size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Cambiador</p>
+                      <p className="text-sm font-semibold">Sí cuenta</p>
+                    </div>
+                  </div>
+                )}
+                {place.detalles.accesibilidad && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-slate-50 p-2 rounded-lg text-slate-600"><Accessibility size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Accesible</p>
+                      <p className="text-sm font-semibold">Universal</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {(place.tipo === 'atraccion' || place.tipo === 'piscina') && (
               <div className="grid grid-cols-2 gap-x-4 gap-y-6">
@@ -256,6 +301,24 @@ export default function PlaceDetailPage() {
               <div>
                 <p className="text-[11px] text-red-600 font-bold uppercase mb-1">Restricciones</p>
                 <p className="text-sm font-medium text-red-700">{place.detalles.restricciones}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Servicios Sanitarios Específicos */}
+          {place.categoria === 'baños' && place.detalles.servicios_adicionales && (
+            <div>
+              <h2 className="font-bold mb-3 flex items-center gap-2">
+                <Info size={18} className="text-primary" />
+                Características adicionales
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {place.detalles.servicios_adicionales.map((s, idx) => (
+                  <Badge key={idx} variant="outline" className="rounded-xl py-1.5 px-4 border-muted text-muted-foreground">
+                    <CheckCircle2 size={12} className="mr-2 text-green-500" />
+                    {s}
+                  </Badge>
+                ))}
               </div>
             </div>
           )}

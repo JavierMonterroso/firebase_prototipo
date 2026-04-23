@@ -116,7 +116,7 @@ export const PLACES: Place[] = [
       publico: "General",
       duracion: "3 minutos",
       capacidad_por_turno: 14,
-      tiempo_estimado: "15-25 min",
+      tiempo_estimado: "10-25 min",
       personas_en_fila: 42
     },
     horario: "10:00 - 18:00",
@@ -235,5 +235,45 @@ export const PLACES: Place[] = [
     ubicacion: "Xocomil - Área nueva",
     rating: 4.7,
     reviews: 300
+  },
+  {
+    id: 'banos-plaza-italia',
+    nombre: "Baños Plaza Italia",
+    tipo: "servicio",
+    categoria: "baños",
+    descripcion: "Servicios sanitarios amplios con atención constante para mantener la limpieza.",
+    imageUrl: 'https://picsum.photos/seed/bath1/600/400',
+    detalles: {
+      accesibilidad: "Acceso universal para silla de ruedas",
+      hombres: true,
+      mujeres: true,
+      mixto: false,
+      cambiador_bebe: true,
+      servicios_adicionales: ["Lavamanos automáticos", "Espejos amplios"]
+    },
+    horario: "10:00 - 18:00",
+    ubicacion: "Xetulul, Plaza Italia",
+    rating: 4.8,
+    reviews: 112
+  },
+  {
+    id: 'banos-area-infantil-xocomil',
+    nombre: "Baños Área Infantil",
+    tipo: "servicio",
+    categoria: "baños",
+    descripcion: "Ubicados estratégicamente cerca de las áreas de niños para comodidad de las familias.",
+    imageUrl: 'https://picsum.photos/seed/bath2/600/400',
+    detalles: {
+      accesibilidad: "Rampas y barandales",
+      hombres: true,
+      mujeres: true,
+      mixto: false,
+      cambiador_bebe: true,
+      servicios_adicionales: ["Duchas rápidas", "Cambiadores para niños"]
+    },
+    horario: "09:00 - 17:00",
+    ubicacion: "Xocomil, Área Infantil",
+    rating: 4.9,
+    reviews: 85
   }
 ];
