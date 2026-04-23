@@ -3,46 +3,51 @@ export type CategoryType =
   | 'Restaurantes' 
   | 'Hostales' 
   | 'Piscinas' 
-  | 'Spa' 
-  | 'Diversión' 
-  | 'Eventos' 
-  | 'Información'
   | 'Atracciones'
-  | 'Baños';
-
-export interface Category {
-  id: string;
-  name: CategoryType;
-  icon: string;
-}
+  | 'Baños'
+  | 'Servicios';
 
 export interface Place {
   id: string;
   name: string;
   category: CategoryType;
-  parque: string;
-  zona?: string;
-  loMejor?: string;
+  type: 'hostal' | 'piscina' | 'atraccion' | 'restaurante' | 'servicio';
   description: string;
-  telefono?: string;
-  precios?: string;
-  hours: string;
   location: string;
   imageUrl: string;
   rating: number;
   reviewCount: number;
-  featured?: boolean;
-  // Attraction specific
-  intensity?: 'Baja' | 'Media' | 'Alta' | 'Extrema';
-  targetAudience?: string;
-  restrictions?: string;
-  capacityPerTurn?: number;
-  durationMinutes?: number;
-  peopleInQueue?: number;
-  // Restaurant specific
-  cuisineType?: string;
-  serviceType?: string;
-  // Bathroom specific
-  accessibility?: string;
-  availability?: 'Alta' | 'Media' | 'Baja';
+  hours: string | {
+    general: string;
+    check_in?: string;
+    check_out?: string;
+  };
+  details: {
+    // Atracciones / Piscinas
+    intensity?: string;
+    targetAudience?: string;
+    duration?: string;
+    capacity?: string | number;
+    estimatedWait?: string;
+    // Restaurantes
+    cuisineType?: string;
+    serviceOptions?: string[];
+    atmosphere?: string;
+    // Hostales
+    rooms?: number;
+    roomTypes?: string[];
+    services?: string[];
+    structure?: string;
+    extra?: string;
+    // Baños / Servicios
+    availability?: string;
+    accessibility?: string;
+    specificLocations?: string[];
+  };
+}
+
+export interface Category {
+  id: string;
+  name: CategoryType;
+  icon: string;
 }

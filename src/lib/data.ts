@@ -4,10 +4,9 @@ import data from '@/app/lib/placeholder-images.json';
 
 const images = data.placeholderImages;
 
-// Función inteligente para obtener la imagen: 
-// Intenta usar la ruta local y si no existe (o es vacía), usa el placeholder del JSON.
 const getImg = (localPath: string, placeholderId: string) => {
   const placeholder = images.find(i => i.id === placeholderId)?.imageUrl || '';
+  // Prioritize local images from public/img/ if they exist, otherwise use placeholder
   return localPath || placeholder;
 };
 
@@ -16,141 +15,197 @@ export const CATEGORIES: Category[] = [
   { id: '2', name: 'Restaurantes', icon: 'Utensils' },
   { id: '3', name: 'Hostales', icon: 'Hotel' },
   { id: '4', name: 'Piscinas', icon: 'Waves' },
-  { id: '5', name: 'Spa', icon: 'Sparkles' },
-  { id: '7', name: 'Baños', icon: 'Bath' },
-  { id: '6', name: 'Info', icon: 'Info' },
+  { id: '5', name: 'Baños', icon: 'Bath' },
 ];
 
 export const PLACES: Place[] = [
   {
-    id: 'pueblo-fantasma',
-    name: 'Pueblo Fantasma',
-    category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Plaza España',
-    loMejor: 'Temática inmersiva, efectos especiales',
-    description: 'Una de las atracciones más icónicas y misteriosas del parque. Recorre pasillos llenos de magia y sorpresas en esta experiencia inmersiva.',
-    imageUrl: getImg('/img/Pueblo-Fantasma1-885x500.jpg', 'attraction-caribeno'),
-    location: 'Plaza España',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
-    telefono: '7722-9450',
+    id: 'hostal-san-martin',
+    name: 'Hostales San Martín',
+    type: 'hostal',
+    category: 'Hostales',
+    description: 'Te sentirás como en los tiempos de la colonia con las comodidades del presente.',
+    imageUrl: getImg('', 'hero-home'),
+    location: 'Complejo IRTRA Retalhuleu',
+    rating: 4.9,
+    reviewCount: 320,
+    hours: {
+      general: '24 horas',
+      check_in: '15:00',
+      check_out: '12:00'
+    },
+    details: {
+      rooms: 192,
+      capacity: '2 adultos y 2 niños por habitación',
+      services: ["Aire acondicionado", "TV cable", "Baño privado", "Agua caliente y fría", "Business Center"],
+      structure: "4 módulos de dos niveles con plaza central estilo colonial"
+    }
+  },
+  {
+    id: 'hostal-santa-cruz',
+    name: 'Hostal Santa Cruz',
+    type: 'hostal',
+    category: 'Hostales',
+    description: 'Ambiente mediterráneo ideal para descansar y desconectarte.',
+    imageUrl: getImg('', 'hero-home'),
+    location: 'Complejo IRTRA Retalhuleu',
     rating: 4.8,
-    reviewCount: 245,
-    intensity: 'Baja',
-    targetAudience: 'Familiar',
-    capacityPerTurn: 20,
-    durationMinutes: 10,
-    peopleInQueue: 15
+    reviewCount: 280,
+    hours: {
+      general: '24 horas',
+      check_in: '15:00',
+      check_out: '12:00'
+    },
+    details: {
+      rooms: 151,
+      roomTypes: ["Habitaciones dobles", "Junior Suites", "Suites de 2 habitaciones"],
+      services: ["Aire acondicionado", "Baño privado", "Secadora de cabello"],
+    }
+  },
+  {
+    id: 'hostal-palajunoj',
+    name: 'Hostal Palajunoj',
+    type: 'hostal',
+    category: 'Hostales',
+    description: 'Inspirado en culturas del mundo con ambientación temática.',
+    imageUrl: getImg('', 'hero-home'),
+    location: 'Complejo IRTRA Retalhuleu',
+    rating: 4.9,
+    reviewCount: 350,
+    hours: {
+      general: '24 horas',
+      check_in: '15:00',
+      check_out: '12:00'
+    },
+    details: {
+      roomTypes: ["Papeete", "Kalimantán", "Nakurú", "Mandalay", "Uaxactún"],
+      rooms: 156,
+      services: ["Ascensores", "Parqueos", "Aire acondicionado", "TV cable", "Piscinas Moana"],
+      extra: "Piscinas con cascadas, tobogán y solárium"
+    }
+  },
+  {
+    id: 'vuelta-del-jaguar',
+    name: 'La Vuelta del Jaguar',
+    type: 'piscina',
+    category: 'Piscinas',
+    description: 'Tobogán extremo con cápsula de caída vertical.',
+    imageUrl: getImg('/img/el-tamagas-2.jpg', 'attraction-jaguar'),
+    location: 'Xocomil - Área nueva',
+    rating: 4.9,
+    reviewCount: 410,
+    hours: 'Jueves a domingo 9:00 - 17:00',
+    details: {
+      intensity: 'Alta',
+      targetAudience: 'Adultos',
+      duration: '1-2 minutos',
+      capacity: 1
+    }
+  },
+  {
+    id: 'caracol-xocomil',
+    name: 'El Caracol',
+    type: 'piscina',
+    category: 'Piscinas',
+    description: 'Tobogán en espiral que desemboca en piscina central.',
+    imageUrl: getImg('', 'attraction-tamagas'),
+    location: 'Xocomil - Área nueva',
+    rating: 4.7,
+    reviewCount: 300,
+    hours: 'Jueves a domingo 9:00 - 17:00',
+    details: {
+      intensity: 'Media-Alta',
+      targetAudience: 'General',
+      capacity: 2,
+      duration: '2 minutos'
+    }
   },
   {
     id: 'gondola-salpicona',
     name: 'Góndola Salpicona',
+    type: 'atraccion',
     category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Plaza Italia',
-    loMejor: 'Juego con agua, alta velocidad',
-    description: 'Juego en balsa con descensos rápidos, vistas del parque y recorrido lleno de adrenalina.',
+    description: 'Atracción acuática con caídas rápidas y salpicaduras.',
     imageUrl: getImg('/img/Gondola-Salpicona1-885x500.jpg', 'attraction-gondola'),
-    location: 'Plaza Italia',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
-    telefono: '7722-9450',
-    rating: 4.9,
-    reviewCount: 340,
-    intensity: 'Alta',
-    targetAudience: 'Jóvenes y adultos',
-    restrictions: 'Estatura mínima 1.20m',
-    capacityPerTurn: 20,
-    durationMinutes: 5,
-    peopleInQueue: 120
+    location: 'Xetulul - Plaza Italia',
+    rating: 4.8,
+    reviewCount: 390,
+    hours: '10:00 - 18:00',
+    details: {
+      intensity: 'Alta',
+      targetAudience: 'General',
+      duration: '3 minutos',
+      capacity: 14,
+      estimatedWait: '10-25 min'
+    }
   },
   {
     id: 'jurakan',
-    name: 'Jurakán',
+    name: 'El Jurakán',
+    type: 'atraccion',
     category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Área Choconoy',
-    loMejor: 'Juego extremo, alta velocidad',
-    description: 'Plataforma que gira y se eleva de lado a lado generando una experiencia intensa.',
+    description: 'Plataforma giratoria con movimientos intensos.',
     imageUrl: getImg('/img/Jurakan-885x500.jpg', 'attraction-jurakan'),
-    location: 'Frente a Choconoy',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
-    telefono: '7722-9450',
+    location: 'Xetulul',
     rating: 4.7,
-    reviewCount: 180,
-    intensity: 'Extrema',
-    targetAudience: 'Buscadores de adrenalina',
-    restrictions: 'Estatura mínima 1.40m',
-    capacityPerTurn: 40,
-    durationMinutes: 3,
-    peopleInQueue: 150
+    reviewCount: 250,
+    hours: '10:00 - 18:00',
+    details: {
+      intensity: 'Alta',
+      targetAudience: 'Adultos',
+      duration: '2 minutos',
+      capacity: 20,
+      estimatedWait: '15-30 min'
+    }
   },
   {
-    id: 'tamagas',
-    name: 'Tamagás',
-    category: 'Atracciones',
-    parque: 'Xocomil',
-    zona: 'Área nueva',
-    loMejor: 'Montaña rusa acuática',
-    description: 'Tobogán con subidas, bajadas y curvas a gran altura. Una experiencia única en la región.',
-    imageUrl: getImg('/img/el-tamagas-2.jpg', 'attraction-tamagas'),
-    location: 'Área nueva',
-    hours: 'Jueves a domingo 09:00-17:00',
-    telefono: '7722-9400',
-    rating: 4.9,
-    reviewCount: 410,
-    featured: true,
-    intensity: 'Alta',
-    targetAudience: 'Familiar',
-    restrictions: 'Estatura mínima 1.20m',
-    capacityPerTurn: 2,
-    durationMinutes: 4,
-    peopleInQueue: 18
-  },
-  {
-    id: 'pueblo-caribeno',
-    name: 'Pueblo Caribeño',
-    category: 'Atracciones',
-    parque: 'Xetulul',
-    zona: 'Inspirado en Izabal',
-    loMejor: 'Nueva atracción, museo, restaurante, juego con agua',
-    description: 'Espacio inspirado en el Castillo de San Felipe. Incluye un juego tipo barco donde puedes lanzar agua a otros usuarios mientras navegas obstáculos.',
-    imageUrl: getImg('', 'attraction-caribeno'),
-    location: 'Plaza España / Izabal',
-    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
+    id: 'restaurante-corozos',
+    name: 'Los Corozos',
+    type: 'restaurante',
+    category: 'Restaurantes',
+    description: 'Comida gourmet internacional en ambiente elegante.',
+    imageUrl: getImg('', 'restaurant-corozos'),
+    location: 'Hostales IRTRA',
     rating: 4.8,
     reviewCount: 210,
-    intensity: 'Media',
-    targetAudience: 'Familiar'
+    hours: 'Según programación',
+    details: {
+      cuisineType: 'Internacional',
+      serviceOptions: ["Desayuno", "Almuerzo", "Cena"],
+      atmosphere: "Familiar y elegante"
+    }
   },
   {
-    id: 'los-corozos',
-    name: 'Los Corozos',
+    id: 'kapa-hapa',
+    name: 'Kapa Hapa',
+    type: 'restaurante',
     category: 'Restaurantes',
-    parque: 'Hostales',
-    loMejor: 'Ambiente relajante y buffet',
-    description: 'Espacio con ambiente relajante, opciones de comida internacional y excelente servicio para huéspedes.',
+    description: 'Fusión asiática con vista a piscina Moana.',
     imageUrl: getImg('', 'restaurant-corozos'),
-    location: 'Área de Hostales',
-    hours: '07:00 - 21:00',
-    telefono: '7722-9450',
-    rating: 4.8,
-    reviewCount: 156,
-    cuisineType: 'Internacional / Buffet',
-    serviceType: 'Mesa / Buffet'
+    location: 'Hostal Palajunoj',
+    rating: 4.7,
+    reviewCount: 180,
+    hours: 'Según programación',
+    details: {
+      cuisineType: 'Asiática',
+      serviceOptions: ["Desayuno", "Almuerzo", "Cena"]
+    }
   },
   {
-    id: 'banos-plaza-italia',
-    name: 'Servicios Plaza Italia',
+    id: 'banos-generales',
+    name: 'Baños Generales',
+    type: 'servicio',
     category: 'Baños',
-    parque: 'Xetulul',
-    zona: 'Plaza Italia',
-    description: 'Servicios sanitarios de primer nivel, con limpieza constante y cambiadores para bebés.',
+    description: 'Servicios sanitarios distribuidos en todo el parque.',
     imageUrl: getImg('', 'bath-placeholder'),
-    location: 'A un costado de Góndola Salpicona',
-    hours: '10:00 - 18:00',
+    location: 'Diversos puntos del parque',
     rating: 4.5,
-    reviewCount: 88,
-    accessibility: 'Totalmente accesible',
-    availability: 'Alta'
+    reviewCount: 120,
+    hours: 'Horario del parque',
+    details: {
+      availability: 'Alta',
+      accessibility: 'Sí',
+      specificLocations: ["Entrada", "Plaza central", "Área de piscinas"]
+    }
   }
 ];
