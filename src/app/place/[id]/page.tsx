@@ -22,7 +22,10 @@ import {
   Timer,
   ShieldAlert,
   Ticket,
-  Waves
+  Waves,
+  Gauge,
+  RotateCw,
+  History
 } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
@@ -89,7 +92,7 @@ export default function PlaceDetailPage() {
 
             {/* Detalles de Atracciones / Piscinas */}
             {(place.tipo === 'atraccion' || place.tipo === 'piscina') && (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-6">
                 <div className="flex items-center gap-3">
                   <div className="bg-orange-50 p-2 rounded-lg text-orange-600"><Zap size={18} /></div>
                   <div>
@@ -115,7 +118,43 @@ export default function PlaceDetailPage() {
                     </div>
                   </div>
                 )}
-                {place.tipo === 'piscina' && (
+                {place.detalles.duracion && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-slate-50 p-2 rounded-lg text-slate-600"><History size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Duración</p>
+                      <p className="text-sm font-semibold">{place.detalles.duracion}</p>
+                    </div>
+                  </div>
+                )}
+                {place.detalles.capacidad && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-indigo-50 p-2 rounded-lg text-indigo-600"><Users size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Capacidad</p>
+                      <p className="text-sm font-semibold">{place.detalles.capacidad} pers.</p>
+                    </div>
+                  </div>
+                )}
+                {place.detalles.velocidad_aproximada && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-rose-50 p-2 rounded-lg text-rose-600"><Gauge size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Velocidad</p>
+                      <p className="text-sm font-semibold">{place.detalles.velocidad_aproximada}</p>
+                    </div>
+                  </div>
+                )}
+                {place.detalles.inversiones && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-amber-50 p-2 rounded-lg text-amber-600"><RotateCw size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Inversiones</p>
+                      <p className="text-sm font-semibold">{place.detalles.inversiones}</p>
+                    </div>
+                  </div>
+                )}
+                {place.tipo === 'piscina' && !place.detalles.publico && (
                   <div className="flex items-center gap-3">
                     <div className="bg-cyan-50 p-2 rounded-lg text-cyan-600"><Waves size={18} /></div>
                     <div>
