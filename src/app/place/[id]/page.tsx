@@ -21,7 +21,8 @@ import {
   Zap,
   Timer,
   ShieldAlert,
-  Ticket
+  Ticket,
+  Waves
 } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
@@ -86,8 +87,8 @@ export default function PlaceDetailPage() {
               </div>
             </div>
 
-            {/* Detalles de Atracciones */}
-            {place.tipo === 'atraccion' && (
+            {/* Detalles de Atracciones / Piscinas */}
+            {(place.tipo === 'atraccion' || place.tipo === 'piscina') && (
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
                   <div className="bg-orange-50 p-2 rounded-lg text-orange-600"><Zap size={18} /></div>
@@ -105,11 +106,29 @@ export default function PlaceDetailPage() {
                     </div>
                   </div>
                 )}
+                {place.detalles.publico && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-purple-50 p-2 rounded-lg text-purple-600"><Users size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Público</p>
+                      <p className="text-sm font-semibold">{place.detalles.publico}</p>
+                    </div>
+                  </div>
+                )}
+                {place.tipo === 'piscina' && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-cyan-50 p-2 rounded-lg text-cyan-600"><Waves size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Tipo</p>
+                      <p className="text-sm font-semibold">Acuático</p>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
             {/* Check-in / Check-out para Hostales */}
-            {typeof place.horario !== 'string' && (
+            {place.tipo === 'hostal' && typeof place.horario !== 'string' && (
               <div className="grid grid-cols-2 gap-4">
                 {place.horario.check_in && (
                   <div className="flex items-center gap-3">
@@ -178,7 +197,7 @@ export default function PlaceDetailPage() {
 
         {/* Detalles Adicionales */}
         <div className="mt-8 space-y-6">
-          {/* Restricciones para Atracciones */}
+          {/* Restricciones */}
           {place.detalles.restricciones && (
             <div className="bg-red-50 p-4 rounded-[20px] border border-red-100 flex gap-3">
               <ShieldAlert className="text-red-500 shrink-0" size={20} />

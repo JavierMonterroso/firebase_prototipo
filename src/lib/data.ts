@@ -15,7 +15,7 @@ export const PLACES: Place[] = [
     nombre: 'Hostales San Martín',
     tipo: 'hostal',
     descripcion: 'Te sentirás como en los tiempos de la colonia con las comodidades del presente.',
-    imageUrl: 'https://picsum.photos/seed/sanmartin/600/400',
+    imageUrl: '/img/san-martin.jpg',
     detalles: {
       habitaciones: 192,
       capacidad: "2 adultos y 2 niños por habitación",
@@ -36,7 +36,7 @@ export const PLACES: Place[] = [
     nombre: 'Hostal Santa Cruz',
     tipo: 'hostal',
     descripcion: 'Ambiente mediterráneo ideal para descansar y desconectarte.',
-    imageUrl: 'https://picsum.photos/seed/santacruz/600/400',
+    imageUrl: '/img/santa-cruz.jpg',
     detalles: {
       habitaciones: 151,
       tipos: ["Habitaciones dobles", "Junior Suites", "Suites de 2 habitaciones"],
@@ -57,7 +57,7 @@ export const PLACES: Place[] = [
     nombre: 'Hostal Palajunoj',
     tipo: 'hostal',
     descripcion: 'Inspirado en culturas del mundo con ambientación temática.',
-    imageUrl: 'https://picsum.photos/seed/palajunoj/600/400',
+    imageUrl: '/img/palajunoj.jpg',
     detalles: {
       edificios: ["Papeete", "Kalimantán", "Nakurú", "Mandalay", "Uaxactún"],
       habitaciones: 156,
@@ -78,7 +78,7 @@ export const PLACES: Place[] = [
     nombre: 'Los Corozos',
     tipo: 'restaurante',
     descripcion: 'Comida gourmet internacional en ambiente elegante.',
-    imageUrl: '/img/hero-home.jpg',
+    imageUrl: '/img/corozos.jpg',
     detalles: {
       tipo_comida: "Internacional",
       servicio: ["Desayuno", "Almuerzo", "Cena"],
@@ -94,7 +94,7 @@ export const PLACES: Place[] = [
     nombre: 'Kapa Hapa',
     tipo: 'restaurante',
     descripcion: 'Fusión asiática con vista a piscina Moana.',
-    imageUrl: 'https://picsum.photos/seed/kapa/600/400',
+    imageUrl: '/img/kapa-hapa.jpg',
     detalles: {
       tipo_comida: "Asiática",
       servicio: ["Desayuno", "Almuerzo", "Cena"]
@@ -108,7 +108,7 @@ export const PLACES: Place[] = [
     id: 'gondola-salpicona',
     nombre: 'Góndola Salpicona',
     tipo: 'atraccion',
-    categoria: 'Atracciones',
+    categoria: 'agua',
     descripcion: 'Atracción acuática con caídas rápidas y salpicaduras.',
     imageUrl: '/img/Gondola-Salpicona1-885x500.jpg',
     detalles: {
@@ -127,7 +127,7 @@ export const PLACES: Place[] = [
     id: 'jurakan',
     nombre: 'El Jurakán',
     tipo: 'atraccion',
-    categoria: 'Atracciones',
+    categoria: 'extrema',
     descripcion: 'Plataforma giratoria con movimientos intensos.',
     imageUrl: '/img/jurakan.jpg',
     detalles: {
@@ -146,7 +146,7 @@ export const PLACES: Place[] = [
     id: 'estrugensen-xetulul',
     nombre: "Estrugensen",
     tipo: "atraccion",
-    categoria: "Atracciones",
+    categoria: "extrema",
     descripcion: "Juego mecánico de gran altura ubicado en la Plaza Alemana que eleva y gira a gran velocidad, ofreciendo una experiencia llena de adrenalina y vistas impresionantes del parque.",
     imageUrl: '/img/estrugensen.jpg',
     detalles: {
@@ -179,7 +179,7 @@ export const PLACES: Place[] = [
     id: 'avalancha-xetulul',
     nombre: "La Avalancha",
     tipo: "atraccion",
-    categoria: "Atracciones",
+    categoria: "extrema",
     descripcion: "Montaña rusa temática del Polo Norte con múltiples inversiones, alta velocidad y recorridos llenos de adrenalina, considerada una de las más impactantes de Guatemala.",
     imageUrl: '/img/avalancha.jpg',
     detalles: {
@@ -208,5 +208,42 @@ export const PLACES: Place[] = [
     ubicacion: "Xetulul, frente a la Plaza Alemana",
     rating: 4.9,
     reviews: 410
+  },
+  {
+    id: 'vuelta-del-jaguar',
+    nombre: 'La Vuelta del Jaguar',
+    tipo: 'piscina',
+    categoria: 'extrema',
+    descripcion: 'Tobogán extremo con cápsula de caída vertical.',
+    imageUrl: '/img/vuelta-jaguar.jpg',
+    detalles: {
+      intensidad: "Alta",
+      publico: "Adultos",
+      duracion: "1-2 minutos",
+      capacidad: 1,
+      tipo: "Tobogán extremo"
+    },
+    horario: "Jueves a domingo 9:00 - 17:00",
+    ubicacion: "Xocomil - Área nueva",
+    rating: 4.9,
+    reviews: 410
+  },
+  {
+    id: 'caracol-xocomil',
+    nombre: 'El Caracol',
+    tipo: 'piscina',
+    categoria: 'adrenalina',
+    descripcion: 'Tobogán en espiral que desemboca en piscina central.',
+    imageUrl: '/img/caracol-xocomil.jpg',
+    detalles: {
+      intensidad: "Media-Alta",
+      publico: "General",
+      capacidad: 2,
+      duracion: "2 minutos"
+    },
+    horario: "Jueves a domingo 9:00 - 17:00",
+    ubicacion: "Xocomil - Área nueva",
+    rating: 4.7,
+    reviews: 300
   }
 ];
