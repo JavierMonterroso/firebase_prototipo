@@ -4,12 +4,12 @@ import data from '@/app/lib/placeholder-images.json';
 
 const images = data.placeholderImages;
 
-// Función auxiliar para obtener la imagen: Prioriza la local, usa placeholder de respaldo
-const getImg = (id: string, localPath: string) => {
-  const placeholder = images.find(i => i.id === id)?.imageUrl || '';
-  // En desarrollo local, si la imagen existe en public/img, se usará el localPath
-  // Aquí devolvemos el placeholder como prioridad para que el prototipo se vea bien siempre
-  return placeholder || localPath;
+// Lógica corregida: Si hay una ruta local, úsala. Si falla, usa el placeholder.
+const getImg = (localPath: string, placeholderId: string) => {
+  // Intentamos usar la ruta local que apunta a /public/img/...
+  // En Next.js, cualquier cosa en /public se sirve en la raíz /
+  const placeholder = images.find(i => i.id === placeholderId)?.imageUrl || '';
+  return localPath || placeholder;
 };
 
 export const CATEGORIES: Category[] = [
@@ -31,7 +31,7 @@ export const PLACES: Place[] = [
     zona: 'Inspirado en Izabal',
     loMejor: 'Nueva atracción, museo, restaurante, juego con agua',
     description: 'Espacio inspirado en el Castillo de San Felipe. Incluye un juego tipo barco donde puedes lanzar agua a otros usuarios mientras navegas obstáculos.',
-    imageUrl: getImg('attraction-caribeno', '/img/pueblo-caribeno.jpg'),
+    imageUrl: getImg('/img/Pueblo-Caribeno1-885x500.jpg', 'attraction-caribeno'),
     location: 'Km 180.5 carretera a Quetzaltenango',
     hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
     telefono: '7722-9450',
@@ -51,7 +51,7 @@ export const PLACES: Place[] = [
     zona: 'Plaza Italia',
     loMejor: 'Juego con agua, alta velocidad',
     description: 'Juego en balsa con descensos rápidos, vistas del parque y recorrido lleno de adrenalina.',
-    imageUrl: getImg('attraction-gondola', '/img/Gondola-Salpicona1-885x500.jpg'),
+    imageUrl: getImg('/img/Gondola-Salpicona1-885x500.jpg', 'attraction-gondola'),
     location: 'Plaza Italia',
     hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
     telefono: '7722-9450',
@@ -72,7 +72,7 @@ export const PLACES: Place[] = [
     zona: 'Área Choconoy',
     loMejor: 'Juego extremo, alta velocidad',
     description: 'Plataforma que gira y se eleva de lado a lado generando una experiencia intensa.',
-    imageUrl: getImg('attraction-jurakan', '/img/Jurakan-885x500.jpg'),
+    imageUrl: getImg('/img/Jurakan-885x500.jpg', 'attraction-jurakan'),
     location: 'Frente a Choconoy',
     hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
     telefono: '7722-9450',
@@ -93,7 +93,7 @@ export const PLACES: Place[] = [
     zona: 'Área nueva',
     loMejor: 'Montaña rusa acuática',
     description: 'Tobogán con subidas, bajadas y curvas a gran altura. Una experiencia única en la región.',
-    imageUrl: getImg('attraction-tamagas', '/img/el-tamagas-2.jpg'),
+    imageUrl: getImg('/img/el-tamagas-2.jpg', 'attraction-tamagas'),
     location: 'Área nueva',
     hours: 'Jueves a domingo 09:00-17:00',
     telefono: '7722-9400',
@@ -115,7 +115,7 @@ export const PLACES: Place[] = [
     zona: 'Área nueva',
     loMejor: 'Extremo, caída vertical',
     description: 'Tobogán con cápsula que se abre y genera una caída libre que te dejará sin aliento.',
-    imageUrl: getImg('attraction-jaguar', '/img/vuelta-jaguar.jpg'),
+    imageUrl: getImg('/img/vuelta-jaguar.jpg', 'attraction-jaguar'),
     location: 'Cerca de Tamagás',
     hours: 'Jueves a domingo 09:00-17:00',
     telefono: '7722-9400',
@@ -135,7 +135,7 @@ export const PLACES: Place[] = [
     parque: 'Hostales',
     loMejor: 'Ambiente relajante y buffet',
     description: 'Espacio con ambiente relajante, opciones de comida internacional y excelente servicio para huéspedes.',
-    imageUrl: getImg('restaurant-corozos', '/img/los-corozos.jpg'),
+    imageUrl: getImg('/img/los-corozos.jpg', 'restaurant-corozos'),
     location: 'Área de Hostales',
     hours: '07:00 - 21:00',
     telefono: '7722-9450',
@@ -151,7 +151,7 @@ export const PLACES: Place[] = [
     parque: 'Xetulul',
     zona: 'Plaza Italia',
     description: 'Servicios sanitarios de primer nivel, con limpieza constante y cambiadores para bebés.',
-    imageUrl: getImg('bath-placeholder', '/img/banos.jpg'),
+    imageUrl: getImg('/img/banos.jpg', 'bath-placeholder'),
     location: 'A un costado de Góndola Salpicona',
     hours: '10:00 - 18:00',
     rating: 4.5,
