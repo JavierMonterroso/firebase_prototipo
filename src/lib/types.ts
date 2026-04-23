@@ -4,7 +4,6 @@ export type CategoryType =
   | 'Hostales' 
   | 'Piscinas' 
   | 'Atracciones'
-  | 'Baños'
   | 'Servicios';
 
 export interface Place {
@@ -23,25 +22,15 @@ export interface Place {
     check_out?: string;
   };
   details: {
-    // Atracciones / Piscinas
+    // Campos genéricos que se adaptarán por tipo
     intensity?: string;
     targetAudience?: string;
     duration?: string;
     capacity?: string | number;
     estimatedWait?: string;
-    // Restaurantes
     cuisineType?: string;
-    serviceOptions?: string[];
-    atmosphere?: string;
-    // Hostales
     rooms?: number;
-    roomTypes?: string[];
     services?: string[];
-    structure?: string;
-    extra?: string;
-    // Baños / Servicios
-    availability?: string;
-    accessibility?: string;
     specificLocations?: string[];
   };
 }
