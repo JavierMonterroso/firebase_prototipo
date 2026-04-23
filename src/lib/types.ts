@@ -48,7 +48,14 @@ export interface Place {
     inversiones?: number;
     tipo?: string;
     capacidad_por_turno?: number;
-    personas_en_fila?: number; // Nueva propiedad para molinetes
+    personas_en_fila?: number;
+    // Servicios (Baños)
+    accesibilidad?: string;
+    hombres?: boolean;
+    mujeres?: boolean;
+    mixto?: boolean;
+    cambiador_bebe?: boolean;
+    servicios_adicionales?: string[];
   };
 }
 

@@ -15,7 +15,7 @@ export const PLACES: Place[] = [
     nombre: 'Hostales San Martín',
     tipo: 'hostal',
     descripcion: 'Te sentirás como en los tiempos de la colonia con las comodidades del presente.',
-    imageUrl: '/img/san-martin.jpg',
+    imageUrl: '/img/HotelSanMartin.png',
     detalles: {
       habitaciones: 192,
       capacidad: "2 adultos y 2 niños por habitación",
@@ -36,7 +36,7 @@ export const PLACES: Place[] = [
     nombre: 'Hostal Santa Cruz',
     tipo: 'hostal',
     descripcion: 'Ambiente mediterráneo ideal para descansar y desconectarte.',
-    imageUrl: '/img/santa-cruz.jpg',
+    imageUrl: '/img/hostalSANTACRUZ.png',
     detalles: {
       habitaciones: 151,
       tipos: ["Habitaciones dobles", "Junior Suites", "Suites de 2 habitaciones"],
@@ -57,7 +57,7 @@ export const PLACES: Place[] = [
     nombre: 'Hostal Palajunoj',
     tipo: 'hostal',
     descripcion: 'Inspirado en culturas del mundo con ambientación temática.',
-    imageUrl: '/img/palajunoj.jpg',
+    imageUrl: '/img/HOSTALPALAJUNOJ.png',
     detalles: {
       edificios: ["Papeete", "Kalimantán", "Nakurú", "Mandalay", "Uaxactún"],
       habitaciones: 156,
@@ -94,7 +94,7 @@ export const PLACES: Place[] = [
     nombre: 'Kapa Hapa',
     tipo: 'restaurante',
     descripcion: 'Fusión asiática con vista a piscina Moana.',
-    imageUrl: '/img/kapa-hapa.jpg',
+    imageUrl: '/img/HAPAKAPA.jpg',
     detalles: {
       tipo_comida: "Asiática",
       servicio: ["Desayuno", "Almuerzo", "Cena"]
@@ -110,7 +110,7 @@ export const PLACES: Place[] = [
     tipo: 'atraccion',
     categoria: 'agua',
     descripcion: 'Atracción acuática con caídas rápidas y salpicaduras.',
-    imageUrl: '/img/Gondola-Salpicona1-885x500.jpg',
+    imageUrl: '/img/Gondola.jpg',
     detalles: {
       intensidad: "Alta",
       publico: "General",
@@ -130,7 +130,7 @@ export const PLACES: Place[] = [
     tipo: 'atraccion',
     categoria: 'extrema',
     descripcion: 'Plataforma giratoria con movimientos intensos.',
-    imageUrl: '/img/jurakan.jpg',
+    imageUrl: '/img/Jurakan.jpg',
     detalles: {
       intensidad: "Alta",
       publico: "Adultos",
@@ -150,7 +150,7 @@ export const PLACES: Place[] = [
     tipo: "atraccion",
     categoria: "extrema",
     descripcion: "Juego mecánico de gran altura ubicado en la Plaza Alemana que eleva y gira a gran velocidad.",
-    imageUrl: '/img/estrugensen.jpg',
+    imageUrl: '/img/Estrugensen.jpg',
     detalles: {
       intensidad: "Alta",
       publico: "Adultos",
@@ -176,7 +176,7 @@ export const PLACES: Place[] = [
     tipo: "atraccion",
     categoria: "extrema",
     descripcion: "Montaña rusa temática del Polo Norte con múltiples inversiones.",
-    imageUrl: '/img/avalancha.jpg',
+    imageUrl: '/img/La-Avalancha.jpg',
     detalles: {
       intensidad: "Muy alta",
       publico: "Adultos",
@@ -203,7 +203,7 @@ export const PLACES: Place[] = [
     tipo: 'piscina',
     categoria: 'extrema',
     descripcion: 'Tobogán extremo con cápsula de caída vertical.',
-    imageUrl: '/img/vuelta-jaguar.jpg',
+    imageUrl: '/img/La-Vuelta-del-Jaguar.jpg',
     detalles: {
       intensidad: "Alta",
       publico: "Adultos",
@@ -223,7 +223,7 @@ export const PLACES: Place[] = [
     tipo: 'piscina',
     categoria: 'adrenalina',
     descripcion: 'Tobogán en espiral que desemboca en piscina central.',
-    imageUrl: '/img/caracol-xocomil.jpg',
+    imageUrl: '/img/Caracol.jpg',
     detalles: {
       intensidad: "Media-Alta",
       publico: "General",
