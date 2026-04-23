@@ -1,42 +1,40 @@
 
-export type CategoryType = 
-  | 'Restaurantes' 
-  | 'Hostales' 
-  | 'Piscinas' 
-  | 'Atracciones'
-  | 'Servicios';
+export type PlaceType = 'hostal' | 'piscina' | 'atraccion' | 'restaurante' | 'servicio';
 
 export interface Place {
   id: string;
-  name: string;
-  category: CategoryType;
-  type: 'hostal' | 'piscina' | 'atraccion' | 'restaurante' | 'servicio';
-  description: string;
-  location: string;
+  nombre: string;
+  tipo: PlaceType;
+  categoria?: string;
+  descripcion: string;
+  ubicacion: string;
   imageUrl: string;
   rating: number;
-  reviewCount: number;
-  hours: string | {
+  reviews: number;
+  horario: string | {
     general: string;
     check_in?: string;
     check_out?: string;
   };
-  details: {
-    // Campos genéricos que se adaptarán por tipo
-    intensity?: string;
-    targetAudience?: string;
-    duration?: string;
-    capacity?: string | number;
-    estimatedWait?: string;
-    cuisineType?: string;
-    rooms?: number;
-    services?: string[];
-    specificLocations?: string[];
+  detalles: {
+    // Restaurantes
+    tipo_comida?: string;
+    servicio?: string[];
+    ambiente?: string;
+    // Hostales
+    habitaciones?: number;
+    capacidad?: string | number;
+    servicios?: string[];
+    // Atracciones
+    intensidad?: string;
+    publico?: string;
+    duracion?: string;
+    tiempo_estimado?: string;
   };
 }
 
 export interface Category {
   id: string;
-  name: CategoryType;
+  name: string;
   icon: string;
 }

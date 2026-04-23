@@ -11,41 +11,54 @@ export const CATEGORIES: Category[] = [
 
 export const PLACES: Place[] = [
   {
-    id: 'hostal-san-martin',
-    name: 'Hostales San Martín',
-    type: 'hostal',
-    category: 'Hostales',
-    description: 'Te sentirás como en los tiempos de la colonia con las comodidades del presente.',
-    imageUrl: '/img/hero-home.jpg',
-    location: 'Complejo IRTRA Retalhuleu',
-    rating: 4.9,
-    reviewCount: 320,
-    hours: {
-      general: '24 horas',
-      check_in: '15:00',
-      check_out: '12:00'
-    },
-    details: {
-      rooms: 192,
-      services: ["Aire acondicionado", "TV cable", "Baño privado", "Business Center"]
+    id: 'restaurante-corozos',
+    nombre: 'Los Corozos',
+    tipo: 'restaurante',
+    categoria: 'Restaurantes',
+    descripcion: 'Comida gourmet internacional en ambiente elegante.',
+    imageUrl: '/img/hero-home.jpg', // Usando la imagen que mencionaste que funciona
+    ubicacion: 'Hostales IRTRA',
+    rating: 4.8,
+    reviews: 210,
+    horario: 'Según programación',
+    detalles: {
+      tipo_comida: 'Internacional',
+      servicio: ['Desayuno', 'Almuerzo', 'Cena'],
+      ambiente: 'Familiar y elegante'
+    }
+  },
+  {
+    id: 'kapa-hapa',
+    nombre: 'Kapa Hapa',
+    tipo: 'restaurante',
+    categoria: 'Restaurantes',
+    descripcion: 'Fusión asiática con vista a piscina Moana.',
+    imageUrl: 'https://picsum.photos/seed/kapa/600/400',
+    ubicacion: 'Hostal Palajunoj',
+    rating: 4.7,
+    reviews: 180,
+    horario: 'Según programación',
+    detalles: {
+      tipo_comida: 'Asiática',
+      servicio: ['Desayuno', 'Almuerzo', 'Cena']
     }
   },
   {
     id: 'gondola-salpicona',
-    name: 'Góndola Salpicona',
-    type: 'atraccion',
-    category: 'Atracciones',
-    description: 'Atracción acuática con caídas rápidas y salpicaduras.',
+    nombre: 'Góndola Salpicona',
+    tipo: 'atraccion',
+    categoria: 'Atracciones',
+    descripcion: 'Atracción acuática con caídas rápidas y salpicaduras.',
     imageUrl: '/img/Gondola-Salpicona1-885x500.jpg',
-    location: 'Xetulul - Plaza Italia',
+    ubicacion: 'Xetulul - Plaza Italia',
     rating: 4.8,
-    reviewCount: 390,
-    hours: '10:00 - 18:00',
-    details: {
-      intensity: 'Alta',
-      targetAudience: 'General',
-      duration: '3 minutos',
-      estimatedWait: '15 min'
+    reviews: 390,
+    horario: '10:00 - 18:00',
+    detalles: {
+      intensidad: 'Alta',
+      publico: 'General',
+      duracion: '3 minutos',
+      tiempo_estimado: '10-25 min'
     }
   }
 ];

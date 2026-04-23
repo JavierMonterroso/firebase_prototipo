@@ -11,6 +11,8 @@ interface PlaceCardProps {
 }
 
 export const PlaceCard = ({ place, horizontal = false }: PlaceCardProps) => {
+  const categoryName = place.categoria || place.tipo.charAt(0).toUpperCase() + place.tipo.slice(1);
+
   if (horizontal) {
     return (
       <Link href={`/place/${place.id}`} className="block group">
@@ -18,22 +20,22 @@ export const PlaceCard = ({ place, horizontal = false }: PlaceCardProps) => {
           <div className="relative w-24 h-24 shrink-0 overflow-hidden rounded-[20px] shadow-sm">
             <img 
               src={place.imageUrl} 
-              alt={place.name} 
+              alt={place.nombre} 
               className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-700"
             />
           </div>
           <div className="flex flex-col justify-center flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-accent text-[11px] font-bold uppercase tracking-widest">{place.parque} {place.zona ? `• ${place.zona}` : ''}</span>
+              <span className="text-accent text-[11px] font-bold uppercase tracking-widest">{categoryName}</span>
               <div className="flex items-center gap-1 bg-primary/5 px-1.5 py-0.5 rounded-lg">
                 <Star size={10} className="fill-primary text-primary" />
                 <span className="text-[11px] font-bold text-primary">{place.rating}</span>
               </div>
             </div>
-            <h3 className="font-headline font-bold text-foreground text-[16px] truncate leading-tight">{place.name}</h3>
+            <h3 className="font-headline font-bold text-foreground text-[16px] truncate leading-tight">{place.nombre}</h3>
             <div className="flex items-center text-muted-foreground text-[12px] mt-2">
               <MapPin size={13} className="mr-1.5 text-primary/60 shrink-0" />
-              <span className="truncate font-medium">{place.location}</span>
+              <span className="truncate font-medium">{place.ubicacion}</span>
             </div>
           </div>
           <div className="flex items-center pr-1">
@@ -52,7 +54,7 @@ export const PlaceCard = ({ place, horizontal = false }: PlaceCardProps) => {
         <div className="relative h-36 overflow-hidden">
           <img 
             src={place.imageUrl} 
-            alt={place.name} 
+            alt={place.nombre} 
             className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -61,16 +63,15 @@ export const PlaceCard = ({ place, horizontal = false }: PlaceCardProps) => {
             {place.rating}
           </Badge>
           <Badge className="absolute top-3 left-3 bg-accent/90 backdrop-blur-md text-white border-none text-[10px] py-1 px-3 rounded-full font-bold shadow-sm">
-            {place.category}
+            {categoryName}
           </Badge>
         </div>
         <div className="p-4">
-          <h3 className="font-headline font-bold text-foreground text-[17px] truncate leading-tight mb-2">{place.name}</h3>
+          <h3 className="font-headline font-bold text-foreground text-[17px] truncate leading-tight mb-2">{place.nombre}</h3>
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] text-accent font-bold uppercase">{place.parque}</span>
             <div className="flex items-center text-muted-foreground text-[12px] font-medium">
               <MapPin size={13} className="mr-1.5 text-primary/60 shrink-0" />
-              <span className="truncate">{place.location}</span>
+              <span className="truncate">{place.ubicacion}</span>
             </div>
           </div>
         </div>
