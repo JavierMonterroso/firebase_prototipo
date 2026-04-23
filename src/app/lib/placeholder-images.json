@@ -8,46 +8,46 @@
       "imageHint": "tropical resort"
     },
     {
+      "id": "attraction-caribeno",
+      "description": "Caribbean style building with water",
+      "imageUrl": "https://picsum.photos/seed/caribe/600/400",
+      "imageHint": "caribbean building"
+    },
+    {
+      "id": "attraction-gondola",
+      "description": "Water splash in a theme park",
+      "imageUrl": "https://picsum.photos/seed/splash/600/400",
+      "imageHint": "water splash"
+    },
+    {
+      "id": "attraction-jurakan",
+      "description": "Thrill ride spinning",
+      "imageUrl": "https://picsum.photos/seed/ride/600/400",
+      "imageHint": "thrill ride"
+    },
+    {
+      "id": "attraction-tamagas",
+      "description": "Large water slide",
+      "imageUrl": "https://picsum.photos/seed/slide/600/400",
+      "imageHint": "water slide"
+    },
+    {
+      "id": "attraction-jaguar",
+      "description": "Vertical drop slide",
+      "imageUrl": "https://picsum.photos/seed/drop/600/400",
+      "imageHint": "vertical drop"
+    },
+    {
       "id": "restaurant-corozos",
       "description": "Elegant open-air restaurant with tropical views",
       "imageUrl": "https://picsum.photos/seed/irtra2/600/400",
       "imageHint": "tropical restaurant"
     },
     {
-      "id": "restaurant-palajunoj",
-      "description": "Cozy restaurant with stone walls and warm lighting",
-      "imageUrl": "https://picsum.photos/seed/irtra3/600/400",
-      "imageHint": "warm restaurant"
-    },
-    {
-      "id": "hostal-sanmartin",
-      "description": "Colonial style hotel building with beautiful gardens",
-      "imageUrl": "https://picsum.photos/seed/irtra4/600/400",
-      "imageHint": "colonial hotel"
-    },
-    {
-      "id": "spa-luna",
-      "description": "Peaceful spa room with candles and massage table",
-      "imageUrl": "https://picsum.photos/seed/irtra5/600/400",
-      "imageHint": "spa relaxation"
-    },
-    {
-      "id": "pool-family",
-      "description": "Large swimming pool with slides and clear blue water",
-      "imageUrl": "https://picsum.photos/seed/irtra6/600/400",
-      "imageHint": "swimming pool"
-    },
-    {
-      "id": "events-center",
-      "description": "Large theater or outdoor stage for shows",
-      "imageUrl": "https://picsum.photos/seed/irtra7/600/400",
-      "imageHint": "outdoor events"
-    },
-    {
-      "id": "info-center",
-      "description": "Friendly visitor information center with maps",
-      "imageUrl": "https://picsum.photos/seed/irtra8/600/400",
-      "imageHint": "information center"
+      "id": "bath-placeholder",
+      "description": "Clean modern public restroom sign",
+      "imageUrl": "https://picsum.photos/seed/bath/600/400",
+      "imageHint": "modern restroom"
     },
     {
       "id": "map-placeholder",
