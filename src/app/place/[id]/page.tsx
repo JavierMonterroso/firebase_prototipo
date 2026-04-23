@@ -17,7 +17,11 @@ import {
   Bed, 
   DoorOpen, 
   DoorClosed, 
-  Users 
+  Users,
+  Zap,
+  Timer,
+  ShieldAlert,
+  Ticket
 } from 'lucide-react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { PLACES } from '@/lib/data';
@@ -81,6 +85,28 @@ export default function PlaceDetailPage() {
                 </p>
               </div>
             </div>
+
+            {/* Detalles de Atracciones */}
+            {place.tipo === 'atraccion' && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="bg-orange-50 p-2 rounded-lg text-orange-600"><Zap size={18} /></div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground font-bold uppercase">Intensidad</p>
+                    <p className="text-sm font-semibold">{place.detalles.intensidad}</p>
+                  </div>
+                </div>
+                {place.detalles.tiempo_estimado && (
+                  <div className="flex items-center gap-3">
+                    <div className="bg-blue-50 p-2 rounded-lg text-blue-600"><Timer size={18} /></div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase">Espera</p>
+                      <p className="text-sm font-semibold">{place.detalles.tiempo_estimado}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Check-in / Check-out para Hostales */}
             {typeof place.horario !== 'string' && (
@@ -150,8 +176,64 @@ export default function PlaceDetailPage() {
           </p>
         </div>
 
-        {/* Detalles Adicionales para Hostales / Restaurantes */}
+        {/* Detalles Adicionales */}
         <div className="mt-8 space-y-6">
+          {/* Restricciones para Atracciones */}
+          {place.detalles.restricciones && (
+            <div className="bg-red-50 p-4 rounded-[20px] border border-red-100 flex gap-3">
+              <ShieldAlert className="text-red-500 shrink-0" size={20} />
+              <div>
+                <p className="text-[11px] text-red-600 font-bold uppercase mb-1">Restricciones</p>
+                <p className="text-sm font-medium text-red-700">{place.detalles.restricciones}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Lo mejor / Características destacadas */}
+          {place.lo_mejor && (
+            <div>
+              <h2 className="font-bold mb-3 flex items-center gap-2">
+                <CheckCircle2 size={18} className="text-primary" />
+                Lo mejor de {place.nombre}
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {place.lo_mejor.map((s, idx) => (
+                  <Badge key={idx} variant="outline" className="rounded-xl py-1.5 px-4 border-muted text-muted-foreground">
+                    {s}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Precios si existen */}
+          {place.precios && (
+            <div className="bg-primary/5 p-5 rounded-[24px] border border-primary/10">
+              <h2 className="font-bold mb-4 flex items-center gap-2">
+                <Ticket size={20} className="text-primary" />
+                Información de Precios
+              </h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-medium">Afiliados:</span>
+                  <span className="text-sm font-bold text-primary">{place.precios.afiliados}</span>
+                </div>
+                <div className="border-t border-primary/10 pt-3">
+                  <p className="text-[10px] text-muted-foreground font-bold uppercase mb-2">No Afiliados</p>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm">Niños / Adulto Mayor:</span>
+                    <span className="text-sm font-bold">{place.precios.no_afiliado.ninos_adulto_mayor}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm">Adultos:</span>
+                    <span className="text-sm font-bold">{place.precios.no_afiliado.adulto}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Servicios para Hostales */}
           {place.detalles.servicios && (
             <div>
               <h2 className="font-bold mb-3 flex items-center gap-2">
@@ -166,33 +248,6 @@ export default function PlaceDetailPage() {
                   </Badge>
                 ))}
               </div>
-            </div>
-          )}
-
-          {place.detalles.edificios && (
-            <div>
-              <h2 className="font-bold mb-3">Edificios / Módulos</h2>
-              <div className="flex flex-wrap gap-2">
-                {place.detalles.edificios.map((e, idx) => (
-                  <Badge key={idx} variant="secondary" className="bg-muted/50 text-foreground border-none">
-                    {e}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {place.detalles.extra && (
-            <div className="bg-primary/5 p-4 rounded-[20px] border border-primary/10">
-              <p className="text-[11px] text-primary font-bold uppercase mb-1">Dato de Interés</p>
-              <p className="text-sm font-medium">{place.detalles.extra}</p>
-            </div>
-          )}
-
-          {place.detalles.estructura && (
-            <div className="bg-muted/30 p-4 rounded-[20px] border border-muted/50">
-              <p className="text-[11px] text-muted-foreground font-bold uppercase mb-1">Arquitectura</p>
-              <p className="text-sm font-medium">{place.detalles.estructura}</p>
             </div>
           )}
         </div>

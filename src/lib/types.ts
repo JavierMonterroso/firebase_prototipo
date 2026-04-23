@@ -16,6 +16,15 @@ export interface Place {
     check_in?: string;
     check_out?: string;
   };
+  lo_mejor?: string[];
+  telefono?: string;
+  precios?: {
+    afiliados: string;
+    no_afiliado: {
+      ninos_adulto_mayor: string;
+      adulto: string;
+    };
+  };
   detalles: {
     // Restaurantes
     tipo_comida?: string;
@@ -34,6 +43,10 @@ export interface Place {
     publico?: string;
     duracion?: string;
     tiempo_estimado?: string;
+    restricciones?: string;
+    velocidad_aproximada?: string;
+    inversiones?: number;
+    tipo?: string;
   };
 }
 
