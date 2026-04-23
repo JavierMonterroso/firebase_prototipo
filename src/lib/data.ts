@@ -4,10 +4,10 @@ import data from '@/app/lib/placeholder-images.json';
 
 const images = data.placeholderImages;
 
-// Función para obtener la imagen: Prioriza la local en public/img/
+// Función inteligente para obtener la imagen: 
+// Intenta usar la ruta local y si no existe (o es vacía), usa el placeholder del JSON.
 const getImg = (localPath: string, placeholderId: string) => {
   const placeholder = images.find(i => i.id === placeholderId)?.imageUrl || '';
-  // Next.js sirve automáticamente lo que está en /public como si fuera la raíz /
   return localPath || placeholder;
 };
 
@@ -107,13 +107,29 @@ export const PLACES: Place[] = [
     peopleInQueue: 18
   },
   {
+    id: 'pueblo-caribeno',
+    name: 'Pueblo Caribeño',
+    category: 'Atracciones',
+    parque: 'Xetulul',
+    zona: 'Inspirado en Izabal',
+    loMejor: 'Nueva atracción, museo, restaurante, juego con agua',
+    description: 'Espacio inspirado en el Castillo de San Felipe. Incluye un juego tipo barco donde puedes lanzar agua a otros usuarios mientras navegas obstáculos.',
+    imageUrl: getImg('', 'attraction-caribeno'),
+    location: 'Plaza España / Izabal',
+    hours: 'Jueves 10:00-17:00 | Viernes a domingo 10:00-18:00',
+    rating: 4.8,
+    reviewCount: 210,
+    intensity: 'Media',
+    targetAudience: 'Familiar'
+  },
+  {
     id: 'los-corozos',
     name: 'Los Corozos',
     category: 'Restaurantes',
     parque: 'Hostales',
     loMejor: 'Ambiente relajante y buffet',
     description: 'Espacio con ambiente relajante, opciones de comida internacional y excelente servicio para huéspedes.',
-    imageUrl: getImg('', 'restaurant-corozos'), // Se mantiene placeholder hasta tener foto real
+    imageUrl: getImg('', 'restaurant-corozos'),
     location: 'Área de Hostales',
     hours: '07:00 - 21:00',
     telefono: '7722-9450',
@@ -129,7 +145,7 @@ export const PLACES: Place[] = [
     parque: 'Xetulul',
     zona: 'Plaza Italia',
     description: 'Servicios sanitarios de primer nivel, con limpieza constante y cambiadores para bebés.',
-    imageUrl: getImg('', 'bath-placeholder'), // Se mantiene placeholder
+    imageUrl: getImg('', 'bath-placeholder'),
     location: 'A un costado de Góndola Salpicona',
     hours: '10:00 - 18:00',
     rating: 4.5,
