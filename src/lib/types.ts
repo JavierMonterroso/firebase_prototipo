@@ -25,6 +25,10 @@ export interface Place {
     habitaciones?: number;
     capacidad?: string | number;
     servicios?: string[];
+    tipos?: string[];
+    edificios?: string[];
+    extra?: string;
+    estructura?: string;
     // Atracciones
     intensidad?: string;
     publico?: string;

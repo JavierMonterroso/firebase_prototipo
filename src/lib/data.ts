@@ -16,7 +16,7 @@ export const PLACES: Place[] = [
     tipo: 'restaurante',
     categoria: 'Restaurantes',
     descripcion: 'Comida gourmet internacional en ambiente elegante.',
-    imageUrl: '/img/hero-home.jpg', // Usando la imagen que mencionaste que funciona
+    imageUrl: '/img/hero-home.jpg',
     ubicacion: 'Hostales IRTRA',
     rating: 4.8,
     reviews: 210,
@@ -44,21 +44,69 @@ export const PLACES: Place[] = [
     }
   },
   {
-    id: 'gondola-salpicona',
-    nombre: 'Góndola Salpicona',
-    tipo: 'atraccion',
-    categoria: 'Atracciones',
-    descripcion: 'Atracción acuática con caídas rápidas y salpicaduras.',
-    imageUrl: '/img/Gondola-Salpicona1-885x500.jpg',
-    ubicacion: 'Xetulul - Plaza Italia',
-    rating: 4.8,
-    reviews: 390,
-    horario: '10:00 - 18:00',
+    id: 'hostal-san-martin',
+    nombre: 'Hostales San Martín',
+    tipo: 'hostal',
+    categoria: 'Hostales',
+    descripcion: 'Te sentirás como en los tiempos de la colonia con las comodidades del presente.',
+    imageUrl: 'https://picsum.photos/seed/sanmartin/600/400',
+    ubicacion: 'Complejo IRTRA Retalhuleu',
+    rating: 4.9,
+    reviews: 320,
+    horario: {
+      general: "24 horas",
+      check_in: "15:00",
+      check_out: "12:00"
+    },
     detalles: {
-      intensidad: 'Alta',
-      publico: 'General',
-      duracion: '3 minutos',
-      tiempo_estimado: '10-25 min'
+      habitaciones: 192,
+      capacidad: "2 adultos y 2 niños por habitación",
+      servicios: ["Aire acondicionado", "TV cable", "Baño privado", "Agua caliente y fría", "Business Center"],
+      estructura: "4 módulos de dos niveles con plaza central estilo colonial"
+    }
+  },
+  {
+    id: 'hostal-santa-cruz',
+    nombre: 'Hostal Santa Cruz',
+    tipo: 'hostal',
+    categoria: 'Hostales',
+    descripcion: 'Ambiente mediterráneo ideal para descansar y desconectarte.',
+    imageUrl: 'https://picsum.photos/seed/santacruz/600/400',
+    ubicacion: 'Complejo IRTRA Retalhuleu',
+    rating: 4.8,
+    reviews: 280,
+    horario: {
+      general: "24 horas",
+      check_in: "15:00",
+      check_out: "12:00"
+    },
+    detalles: {
+      habitaciones: 151,
+      tipos: ["Habitaciones dobles", "Junior Suites", "Suites de 2 habitaciones"],
+      servicios: ["Aire acondicionado", "Baño privado", "Secadora de cabello"],
+      capacidad: "Variable según tipo de habitación"
+    }
+  },
+  {
+    id: 'hostal-palajunoj',
+    nombre: 'Hostal Palajunoj',
+    tipo: 'hostal',
+    categoria: 'Hostales',
+    descripcion: 'Inspirado en culturas del mundo con ambientación temática.',
+    imageUrl: 'https://picsum.photos/seed/palajunoj/600/400',
+    ubicacion: 'Complejo IRTRA Retalhuleu',
+    rating: 4.9,
+    reviews: 350,
+    horario: {
+      general: "24 horas",
+      check_in: "15:00",
+      check_out: "12:00"
+    },
+    detalles: {
+      edificios: ["Papeete", "Kalimantán", "Nakurú", "Mandalay", "Uaxactún"],
+      habitaciones: 156,
+      servicios: ["Ascensores", "Parqueos", "Aire acondicionado", "TV cable", "Piscinas Moana"],
+      extra: "Piscinas con cascadas, tobogán y solárium"
     }
   }
 ];
