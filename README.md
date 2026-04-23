@@ -8,27 +8,22 @@ Esta es una aplicación móvil-first diseñada para explorar los parques y hosta
 - **Node.js:** Versión 18.x o superior.
 - **npm:** Incluido con Node.js.
 
-## Instalación
+## Instalación y Configuración de Imágenes
 
-1. **Descomprimir:** Extrae el contenido del archivo ZIP en una carpeta.
-2. **Terminal:** Abre una terminal en la carpeta raíz del proyecto.
-3. **Instalar Dependencias:**
+Para que la aplicación funcione y muestre tus fotos reales, sigue estos pasos exactamente:
+
+1. **Extraer:** Descomprime el archivo ZIP en una carpeta.
+2. **Crear Carpeta Public:** En la raíz del proyecto (donde ves el archivo `package.json`), crea una carpeta nueva llamada `public`.
+3. **Mover Imágenes:** Localiza la carpeta `src/img` y **muévela** completa dentro de la carpeta `public` que acabas de crear.
+   - La ruta correcta debe ser: `public/img/tus-fotos.jpg`.
+4. **Instalar Dependencias:** Abre una terminal en la carpeta raíz y ejecuta:
    ```bash
    npm install
    ```
 
-## Configuración de Imágenes Reales
-
-Para que las imágenes que subiste funcionen correctamente en tu equipo local:
-
-1. Localiza la carpeta `src/img` en el proyecto.
-2. **Mueve** o copia esa carpeta `img` completa a la carpeta `public/`.
-3. La ruta final debe ser: `public/img/tu-imagen.jpg`.
-4. De esta manera, Next.js servirá las imágenes bajo la ruta `/img/`.
-
 ## Ejecución
 
-Para iniciar el servidor de desarrollo en modo móvil-first:
+Para iniciar el servidor de desarrollo:
 
 ```bash
 npm run dev
@@ -36,11 +31,9 @@ npm run dev
 
 La aplicación estará disponible en: [http://localhost:9002](http://localhost:9002)
 
-## Notas de Desarrollo
-
-- **Diseño Mobile-First:** La aplicación está optimizada para vistas móviles. En tu navegador, usa las herramientas de desarrollador (F12) y activa la vista de dispositivo móvil.
-- **Tecnologías:** Next.js 15, React 19, Tailwind CSS, Lucide Icons y ShadCN UI.
-- **Simulación:** Los flujos de Login, Registro y Monedero son funcionales a nivel de prototipo (estado local).
+## Notas Importantes
+- **Vista Móvil:** Usa las herramientas de desarrollador (F12) en tu navegador y activa la "Vista de dispositivo móvil" para la mejor experiencia.
+- **Imágenes:** Si las imágenes no cargan, verifica que estén en `public/img/` y que el nombre del archivo coincida exactamente con el que está escrito en `src/lib/data.ts`.
 
 ---
 © 2024 IRTRA Explorer Prototyper.
