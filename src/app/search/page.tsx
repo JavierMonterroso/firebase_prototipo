@@ -29,13 +29,21 @@ export default function SearchPage() {
   const filteredPlaces = useMemo(() => {
     return PLACES.filter(place => {
       const searchLower = searchTerm.toLowerCase();
+      // Corregido: Usar nombre, descripcion y ubicacion del nuevo JSON
       const matchesSearch = 
-        place.name.toLowerCase().includes(searchLower) ||
-        place.description.toLowerCase().includes(searchLower) ||
-        place.parque.toLowerCase().includes(searchLower) ||
-        (place.zona && place.zona.toLowerCase().includes(searchLower));
+        place.nombre.toLowerCase().includes(searchLower) ||
+        place.descripcion.toLowerCase().includes(searchLower) ||
+        place.ubicacion.toLowerCase().includes(searchLower);
         
-      const matchesCategory = activeCategory === 'All' || place.category === activeCategory;
+      // Corregido: Mapeo de categoría/tipo
+      const matchesCategory = activeCategory === 'All' || 
+        place.categoria === activeCategory || 
+        (activeCategory === 'Atracciones' && place.tipo === 'atraccion') ||
+        (activeCategory === 'Restaurantes' && place.tipo === 'restaurante') ||
+        (activeCategory === 'Hostales' && place.tipo === 'hostal') ||
+        (activeCategory === 'Piscinas' && place.tipo === 'piscina') ||
+        (activeCategory === 'Servicios' && place.tipo === 'servicio');
+
       return matchesSearch && matchesCategory;
     });
   }, [searchTerm, activeCategory]);
@@ -56,7 +64,7 @@ export default function SearchPage() {
             <Input 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Ej. Xetulul, Tamagás, Restaurante..."
+              placeholder="Ej. Los Corozos, Hostal, Xetulul..."
               className="pl-10 h-12 rounded-[18px] bg-muted/40 border-none shadow-none focus-visible:ring-1 focus-visible:ring-primary/20"
             />
           </div>
@@ -77,11 +85,11 @@ export default function SearchPage() {
           {CATEGORIES.map((category) => (
             <CategoryChip 
               key={category.id}
-              name={category.name}
+              name={category.name as CategoryType}
               iconName={category.icon}
               variant="small"
               active={activeCategory === category.name}
-              onClick={() => setActiveCategory(category.name)}
+              onClick={() => setActiveCategory(category.name as CategoryType)}
             />
           ))}
         </div>
@@ -103,7 +111,7 @@ export default function SearchPage() {
                 <SearchIcon size={40} />
               </div>
               <h3 className="font-headline font-semibold text-foreground">No se encontraron resultados</h3>
-              <p className="text-muted-foreground mt-2 px-10">Intenta buscar por parque (Xetulul/Xocomil) o por el nombre de la atracción.</p>
+              <p className="text-muted-foreground mt-2 px-10">Intenta buscar por el nombre del lugar o por categoría.</p>
             </div>
           )}
         </div>
