@@ -14,6 +14,7 @@ export default function ProfilePage() {
   const router = useRouter();
 
   const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
     router.push('/login');
   };
 
@@ -22,14 +23,12 @@ export default function ProfilePage() {
       icon: Key, 
       label: 'Mi Llave Digital', 
       color: 'text-primary', 
-      badge: 'NUEVO', 
       href: '/digital-key' 
     },
     { 
       icon: Wallet, 
       label: 'Monedero Sin Contacto', 
       color: 'text-primary', 
-      badge: 'PRÓXIMAMENTE', 
       href: '/wallet' 
     },
     { 
@@ -82,11 +81,6 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex flex-col items-start">
                     <span className="text-foreground font-bold text-[15px]">{item.label}</span>
-                    {item.badge && (
-                      <span className="text-[9px] font-black text-white bg-primary px-1.5 rounded mt-0.5 tracking-tighter">
-                        {item.badge}
-                      </span>
-                    )}
                   </div>
                 </div>
                 <ChevronRight size={18} className="text-muted-foreground/40" />

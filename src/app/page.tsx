@@ -1,6 +1,7 @@
 
 "use client"
 
+import { useEffect } from 'react';
 import { MobileContainer } from '@/components/layout/MobileContainer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { Hero } from '@/components/home/Hero';
@@ -12,6 +13,14 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
   const router = useRouter();
   
+  useEffect(() => {
+    // Simulación de verificación de sesión
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      router.push('/login');
+    }
+  }, [router]);
+
   // Logic: Top 5 places ordered by rating (descending)
   const topRatedPlaces = [...PLACES]
     .sort((a, b) => b.rating - a.rating)
